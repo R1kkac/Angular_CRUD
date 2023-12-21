@@ -1,0 +1,14 @@
+<div class="userinfo container">
+    <img [src]="avatar" class="img img-thumbnail w-100 h-100" alt="image" onerror="if (this.src === '/src/assets/error.webp') { this.onerror = null; }">
+    <mat-card>
+        <mat-card-content>User Name: {{user.name}}</mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>Phone: {{user.phoneNumber}}</mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>Email: {{user.email}}</mat-card-content>
+    </mat-card>
+    <a class="btn btn-primary" (click)="updateInfo()">Sửa thông tin </a>
+    <app-update-info-user [user]="user" *ngIf="isUpdate"></app-update-info-user>
+</div>

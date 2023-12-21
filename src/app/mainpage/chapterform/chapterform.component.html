@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    <h1>Chapter Form</h1>
+</div>
+<form [formGroup]="chapterForm" novalidate>
+<div mat-dialog-content class="content">
+    <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Tên Chương</mat-label>
+            <input matInput type="text" placeholder="Chương 1" formControlName="ChapterName">
+            <mat-error>
+              Tên chương là bắt buộc.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tiêu đề Chương</mat-label>
+            <input matInput type="text" formControlName="ChapterTitle">
+            <mat-error >
+              Tiêu đề chương là bắt buộc.
+            </mat-error>
+          </mat-form-field>
+          <!-- Nếu bạn muốn tải lên hình ảnh -->
+          <div class="image-container" formGroupName="ChapterImages">
+            <input type="file" (change)="onFileSelected($event)" multiple>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>URLs Hình Ảnh</mat-label>
+            <input matInput formControlName="imageUrls">
+            <mat-hint>Nhập URLs, mỗi URL cách nhau bằng dấu phẩy.</mat-hint>
+          </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="closeForm()">Cancel</button>
+    <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!chapterForm.valid">Tạo Chương</button> -->
+    <button mat-raised-button color="primary" (click)="onSubmit()">{{data ? 'Update' : 'Save'}}</button>
+</div>
+</form>

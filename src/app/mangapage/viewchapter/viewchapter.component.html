@@ -1,0 +1,10 @@
+<div class="toolbar">
+    <a routerLink="{{mangaid}}/{{chapterid}}">Chap trước</a>&nbsp;/&nbsp;
+    <a routerLink="/Manga/{{mangaid}}">Trang Chủ</a>&nbsp;/&nbsp;
+    <a routerLink="{{mangaid}}/{{chapterid}}">Chap tiếp theo</a>
+</div>
+<div class="container col-8 align-items-center justify-content-center">
+    <div class="row col-12 " style="display:block">
+        <img *ngFor="let image of listImage" [src]="image" alt="image"  loading="lazy" onerror="this.src='/src/assets/error.webp'">
+    </div>
+</div>

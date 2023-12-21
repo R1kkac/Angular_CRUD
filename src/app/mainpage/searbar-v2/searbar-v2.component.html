@@ -1,0 +1,27 @@
+<!-- <p>Searchbar V2</p>
+<div class="row">
+    <input #inputElement [(ngModel)]="data" (input)="onInputChange()" (keydown)="onKeyDown()">
+    <ul *ngIf="suggestions !==null">
+        <li *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)" style="background-color: white; color: black;">{{ suggestion.mangaName }}</li>
+    </ul>
+</div>
+ -->
+
+ <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Manga Name</mat-label>
+      <input #inputElement [(ngModel)]="data" type="text"
+             placeholder="Pick one"
+             aria-label="Manga Name"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let option of suggestions " [value]="option">
+          <img [src]="option.mangaImage" class="img img-thumbnail w-25 h-25" alt="img">
+          <a #info (click)="timkiem(option.mangaId)">{{option.mangaName}}</a>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  

@@ -1,0 +1,23 @@
+.manga{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.manga .info{
+    order: 1;
+}
+.manga .info .col-6{
+    margin-top: 10vh;
+    position: relative;
+    display: inline-block;
+}
+.manga .comment{
+    order: 2;
+}
+// app-mangainfo{
+//     position: absolute;
+//     display: grid;
+//     top: 50%;
+//     left: 50%;
+//     width: 100%;
+// }

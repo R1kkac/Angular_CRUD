@@ -1,0 +1,7 @@
+<div>
+    <button mat-raised-button color="accent" mat-button [matMenuTriggerFor]="menu">{{user._Name}}</button>
+        <mat-menu  #menu="matMenu">
+            <button mat-menu-item (click)="UserInfo()">Thông tin tài khoản</button>
+            <button mat-menu-item (click)="Logout()">Đăng xuất</button>
+        </mat-menu>
+</div>

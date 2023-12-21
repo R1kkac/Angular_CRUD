@@ -1,0 +1,32 @@
+<div class="login container">
+    <div class="mb-3 row ">
+        <mat-card class="position-absolute top-0 start-0 translate-middle">
+            <mat-card-header>
+                <h1>Đăng Nhập</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="formLogin" (ngSubmit)="ProcessLogin()">     
+                    <div class="example-container">
+                        <mat-form-field>
+                        <mat-label>Tên Tài Khoản</mat-label>
+                        <input matInput  formControlName="UserName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field>
+                        <mat-label>Mật khẩu</mat-label>
+                        <input type="password" matInput formControlName="Password" required>
+                        </mat-form-field>
+                    </div>        
+                    <div class="example-container">
+                        <button mat-raised-button color="primary">Đăng Nhập</button>
+                        <a routerLink="/" mat-raised-button color="accent" class="m-1">Quay lại</a>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+
+  

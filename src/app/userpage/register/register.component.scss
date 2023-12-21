@@ -1,0 +1,20 @@
+.register{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 500px;
+}
+mat-card{
+    position: absolute;
+    display: flex;
+   align-items: center;
+}
+.example-form{
+    display: grid;
+    place-items: center; 
+}
+.avatar{
+    margin:2em 0 2em ;
+    display: grid;
+}

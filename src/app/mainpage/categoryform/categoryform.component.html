@@ -1,0 +1,21 @@
+<div mat-dialog-title>
+    <h1>Category Form</h1>
+</div>
+<form [formGroup]="empForm" >
+<div mat-dialog-content class="content">
+    <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Naruto" formControlName="mangaName">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Details</mat-label>
+            <input matInput type="text" formControlName="mangaDetails">
+          </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="closeAddEditForm()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Update' : 'Save'}}</button>
+</div>
+</form>

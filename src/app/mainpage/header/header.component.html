@@ -1,0 +1,65 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <button *ngIf="isLogin" (click)="drawer.toggle()" mat-icon-button><mat-icon>menu</mat-icon></button>
+    <div style="margin-left: 1em;">
+      <a routerLink="/" mat-raised-button color="accent">Trang chủ
+  </a>
+    </div>
+      <div class="spacer">
+    </div>
+    <!-- <app-message [isLogin]="isLogin" [user]="user"></app-message> -->
+    <div class="spacer">
+    </div>
+    <div >
+      <!-- <app-searbar-v2></app-searbar-v2> -->
+    </div>
+    <div class="spacer">
+    </div>
+      <div style="margin-left: 1em;">
+        <button *ngIf="isLogin==false" mat-raised-button color="accent" (click)="Login()">Đăng nhập</button>
+        <a *ngIf="isLogin">
+          <app-user  [user]="user"></app-user>
+        </a>
+      </div>
+      <div style="margin-left: 1em;">
+        <button *ngIf="isLogin==false" routerLink="/Register" mat-raised-button color="accent">Đăng ký</button>
+      </div>  
+      <div style="margin-right: 2em;"></div>
+</div>
+
+<mat-drawer-container class="menu" autosize>
+  <mat-drawer #drawer opened="false" mode="over" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button><mat-icon>person</mat-icon> Người dùng</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/Categorys"><mat-icon>book</mat-icon> Thể loại</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/Mangas"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <button mat-button><mat-icon>settings</mat-icon> Vai trò</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 600px;">
+      <div class="main">
+        <router-outlet>
+          
+        </router-outlet> <!-- Đây là nơi để hiển thị nội dung của các route -->
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

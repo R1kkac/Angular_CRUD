@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="info">
+        <img [src]="manga.mangaImage" class="poster">
+        <div>
+            <h2>{{manga.mangaName}}</h2>
+            <div class="rating">
+                <img [src]="icon">
+                <h4>{{imdbRating}}</h4>
+            </div>
+            <div class="details">
+                <span>{{Rated}}</span>
+                <span>{{Year}}</span>
+                <span>{{Runtime}}</span>
+            </div>
+                <div class="genre" *ngFor="let gender of Genre1">
+                    <div>{{gender}}</div>
+                </div>
+        </div>
+    </div>
+    <h3>Giới thiệu:</h3>
+    <p>{{manga.mangaDetails}}</p>
+    <h3>Cast:</h3> 
+    <p>Tác giả: {{manga.mangaAuthor}}</p>
+    <p>Họa sĩ: {{manga.mangaArtist}}</p>
+    <p>Người dịch: {{Actors}}</p>
+    <a class="btn btn-danger" (click)="theoDoiTruyen(manga.mangaId)">Theo dõi</a>
+  </div>
+  

@@ -1,0 +1,15 @@
+<div class="container">
+    <div #slide >
+         <div *ngFor="let manga of listManga" class="item" style="background-image: url({{manga.mangaImage}});">
+             <div class="content">
+                 <div class="name">{{manga.mangaName}}</div>
+                 <div class="des">{{manga.mangaDetails}}</div>
+                 <button (click)="Info(manga)">Chi tiết</button>
+             </div>
+         </div>
+     </div>
+     <div class="buttons">
+         <button (click)="onPrevClick()" #prev><i class="fa-solid fa-angle-left"></i></button>
+         <button (click)="onNextClick()" #next><i class="fa-solid fa-angle-right"></i></button>
+     </div>
+ </div>

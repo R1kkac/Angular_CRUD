@@ -1,0 +1,77 @@
+<div class="register container">
+    <div class="mb-3 row ">
+        <mat-card class="position-absolute top-0 start-0 translate-middle">
+            <mat-card-header>
+                <h1>Đăng ký tài khoản</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="registerForm" (ngSubmit)="ProcessRegister()">     
+                  <mat-form-field class="example-container">
+                    <mat-label>User Name</mat-label>
+                    <input matInput formControlName="username">
+                  </mat-form-field>
+                <mat-form-field class="example-container">
+                    <mat-label>Mật Khẩu</mat-label>
+                    <input type="password" matInput formControlName="password">
+                  </mat-form-field>
+                  <mat-form-field class="example-container">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email">
+                  </mat-form-field>
+                  <mat-form-field class="example-container">
+                    <mat-label>SĐT</mat-label>
+                    <input type="tel" matInput formControlName="phonenumber">
+                  </mat-form-field>
+                  <div class="avatar">
+                    <mat-label>Ảnh đại diện</mat-label>
+                    <input type="file" accept="image/*" (change)="selectFile($event)" >
+                  </div>
+                  <mat-form-field class="example-container">
+                    <mat-label>Tên hiển thị</mat-label>
+                    <input matInput formControlName="nameview">
+                  </mat-form-field>
+                  <div class="example-container">
+                    <button mat-raised-button color="primary" class="m-1">Đăng Ký</button>
+                  <a routerLink="/" mat-raised-button color="accent">Quay lại</a>  
+                </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<!-- <mat-card>
+    <mat-card-header>
+        <h1>Đăng ký tài khoản</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form style="display: grid;" class="example-form" [formGroup]="registerForm" (ngSubmit)="ProcessRegister()">
+            <mat-form-field class="example-full-width">
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="username">
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Mật Khẩu</mat-label>
+                <input type="password" matInput formControlName="password">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>SĐT</mat-label>
+                <input type="tel" matInput formControlName="phonenumber">
+              </mat-form-field>
+              <div style="margin: 2em 0 2em; display: grid;">
+                <mat-label>Ảnh đại diện</mat-label>
+                <input type="file" accept="image/*" (change)="selectFile($event)" >
+              </div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Tên hiển thị</mat-label>
+                <input matInput formControlName="nameview">
+              </mat-form-field>
+              <button mat-raised-button color="primary">Đăng Ký</button>
+              <a routerLink="/" mat-raised-button color="accent">Quay lại</a>
+        </form>
+    </mat-card-content>
+  </mat-card> -->

@@ -1,0 +1,27 @@
+    <mat-card-content>
+        <form class="example-form" [formGroup]="fromdata" (ngSubmit)="updateInfo()" style="display: grid;">     
+        <mat-form-field class="example-container">
+            <mat-label>Mật Khẩu cũ</mat-label>
+            <input type="password" matInput formControlName="oldpassword">
+          </mat-form-field>
+          <mat-form-field class="example-container">
+            <mat-label>Mật Khẩu mới</mat-label>
+            <input type="password" matInput formControlName="newpassword">
+          </mat-form-field>
+          <mat-form-field class="example-container">
+            <mat-label>SĐT</mat-label>
+            <input type="tel" matInput formControlName="phonenumber">
+          </mat-form-field>
+          <div class="avatar">
+            <mat-label>Ảnh đại diện</mat-label>
+            <input type="file" accept="image/*" (change)="selectFile($event)" >
+          </div>
+          <mat-form-field class="example-container">
+            <mat-label>Tên hiển thị</mat-label>
+            <input matInput formControlName="nameview">
+          </mat-form-field>
+          <div class="example-container">
+            <button mat-raised-button color="primary" class="m-1">Đăng Ký</button>
+        </div>
+        </form>
+    </mat-card-content>

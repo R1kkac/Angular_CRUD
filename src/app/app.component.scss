@@ -1,0 +1,13 @@
+.content {
+    display: flex; /* Sử dụng flexbox để sắp xếp theo chiều dọc */
+    flex-direction: column; /* Hiển thị theo chiều dọc */
+  }
+  
+  .header-container {
+    order: 1; /* Thiết lập thứ tự, để header hiển thị trước router-outlet */
+  }
+  
+  .router-outlet-container {
+    order: 2; /* Thiết lập thứ tự, để router-outlet hiển thị sau header */
+    
+  }
