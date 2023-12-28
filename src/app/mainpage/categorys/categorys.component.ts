@@ -11,7 +11,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 @Component({
   selector: 'app-categorys',
   templateUrl: './categorys.component.html',
-  styleUrls: ['./categorys.component.scss']
+  styleUrls: ['./categorys.component.scss'],
 })
 
 
@@ -91,4 +91,25 @@ export class CategorysComponent implements OnInit{
       this.getCategoryList();
     });
   }
+
+  openEditForm(genre: any): void {
+    if (this.dataSource) {
+      const dialogRef = this.dialog.open(CategoryformComponent, {
+        data: { 
+          genreId: genre.genreId,
+          genresIdName: genre.genresIdName,
+          info: genre.info
+        }
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
+        this.ngOnInit();
+      });
+    } else {
+      console.error('Không thể lấy thông tin manga');
+      // Xử lý lỗi hoặc thông báo cho người dùng
+    }
+
+  }
+
 }

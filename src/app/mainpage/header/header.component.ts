@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { user } from 'src/app/class/user';
+import { UserInfo } from 'src/app/class/userInfo.model';
+import { AuthService } from 'src/app/service/auth.service';
 import { UserService, isLogin } from 'src/app/service/user.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class HeaderComponent implements OnInit{
   isLogin=false;
   isPersonalManga: boolean = false;
 
-  constructor(private userService: UserService, private router: Router, private login: isLogin, private route: ActivatedRoute){
+  constructor(private userService: UserService, private router: Router, private login: isLogin, private route: ActivatedRoute,private authService: AuthService){
     this.user= new user();
   }
   ngOnInit(): void {
@@ -45,5 +47,29 @@ export class HeaderComponent implements OnInit{
       this.router.navigate(['/Login']);
   }
 
+  checkAndNavigateUser() {
+    this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
+      if (userInfo.role.includes('Admin')) {
+        this.router.navigate(['/Users']);
+      } else {
+        alert('Chỉ có Admin mới có quyền truy cập trang này.');
+      }
+    }, error => {
+      console.error('Lỗi khi lấy thông tin người dùng: ', error);
+    });
+}
+
+checkAndNavigateRole() {
+  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
+    if (userInfo.role.includes('Admin')) {
+      this.router.navigate(['/Role']);
+    } else {
+      alert('Chỉ có Admin mới có quyền truy cập trang này.');
+    }
+  }, error => {
+    console.error('Lỗi khi lấy thông tin vai trò: ', error);
+  });
+}
+  
   
 }

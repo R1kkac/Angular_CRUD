@@ -34,7 +34,7 @@
         <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button><mat-icon>person</mat-icon> Người dùng</button>
+        <button mat-button (click)="checkAndNavigateUser()"><mat-icon>person</mat-icon> Người dùng</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button routerLink="/Categorys"><mat-icon>book</mat-icon> Thể loại</button>
@@ -47,7 +47,7 @@
       </mat-list-item>
       
       <mat-list-item>
-        <button mat-button><mat-icon>settings</mat-icon> Vai trò</button>
+        <button mat-button (click)="checkAndNavigateRole()"><mat-icon>settings</mat-icon> Vai trò</button>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>

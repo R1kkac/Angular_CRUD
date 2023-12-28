@@ -38,7 +38,7 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
             <td mat-cell *matCellDef="let row">
-              <button mat-icon-button  matTooltip="Chỉnh sửa">
+              <button mat-icon-button (click)="openEditForm(row)" matTooltip="Chỉnh sửa">
                 <mat-icon color="accent">edit</mat-icon>
               </button>
               <button mat-icon-button (click)="onDelete(row)" matTooltip="Xóa">

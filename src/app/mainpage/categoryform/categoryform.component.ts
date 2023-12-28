@@ -12,21 +12,45 @@ export class CategoryformComponent implements OnInit{
   empForm: FormGroup;
   constructor(private _fb:FormBuilder, private _mangaService: MangaService,private _dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data:any){
     this.empForm = this._fb.group({
-      mangaName:['', Validators.required],
-      mangaDetails:['', Validators.required],
+      genresIdName:['', Validators.required],
+      info:['', Validators.required],
     });
   }
     ngOnInit(): void {
+      this.loadGenresData();
+    }
 
+    async loadGenresData() {
+      try {
+       this.empForm.patchValue({
+        genresIdName:this.data.genresIdName,
+        info:this.data.info
+       });
+       
+      } catch (error) {
+        console.error('Không thể tải dữ liệu thể loại:', error);
+      }
     }
 
     onFormSubmit(): void {
       if (this.empForm.valid) {
         const categoryData = {
-          GenresIdName: this.empForm.value.mangaName,
-          Info: this.empForm.value.mangaDetails
+          GenresIdName: this.empForm.value.genresIdName,
+          Info: this.empForm.value.info
         };
-  
+       if(this.data){
+        this._mangaService.suaTheLoai(this.data.genreId,categoryData).subscribe({
+          next: (response) => {
+            console.log('Thể loại đã được sửa:', response);
+            alert('Thể loại đã được sửa');
+            this.closeAddEditForm();
+          },
+          error: (error) => {
+            alert('Có lỗi xảy ra khi sửa thể loại');
+            console.error('Có lỗi xảy ra khi sửa thể loại:', error);
+          }
+        });
+       } else{
         this._mangaService.taoTheLoai(categoryData).subscribe({
           next: (response) => {
             console.log('Thể loại đã được thêm:', response);
@@ -38,6 +62,7 @@ export class CategoryformComponent implements OnInit{
             console.error('Có lỗi xảy ra khi thêm thể loại:', error);
           }
         });
+       }
       }
     }
 

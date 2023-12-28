@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service'
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 import { message } from '../class/message';
 import { UserService } from './user.service';
+import { Observable } from 'rxjs';
+import { UserInfo } from '../class/userInfo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -80,11 +82,14 @@ export class AuthService {
   }
 
 
-
-  getUserInfo(iduser: string){
-    const url= `${this.apiUrl}/Infouser/${iduser}`;
-    return this.http.get(url);
+  getUserInfo(iduser: string): Observable<UserInfo> {
+    const url = `${this.apiUrl}/Infouser/${iduser}`;
+    return this.http.get<UserInfo>(url);
   }
+  // getUserInfo(iduser: string){
+  //   const url= `${this.apiUrl}/Infouser/${iduser}`;
+  //   return this.http.get(url);
+  // }
   
   async updateUser(user: any, image: File){
     const url= `${this.apiUrl}/EditUser`;

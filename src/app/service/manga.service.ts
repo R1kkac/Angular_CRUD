@@ -255,6 +255,18 @@ export class MangaService {
     };
     return this.http.delete(`${this.apiUrl}/${genreId}/DeleteGenre`, httpOptions);
   }
+  // Sửa thể loại
+  suaTheLoai(genreId: number, theLoai: any): Observable<any> {
+    const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.apiUrl}/${genreId}/UpdateGenre`, theLoai, {
+      headers: headers,
+      responseType: 'text' as 'json'
+    });
+  }
   
 
 }

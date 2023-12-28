@@ -39,6 +39,10 @@ import { CategorysComponent } from './mainpage/categorys/categorys.component';
 import { CategoryformComponent } from './mainpage/categoryform/categoryform.component';
 import { HomeComponent } from './mainpage/home/home.component';
 import { FooterComponent } from './mainpage/footer/footer.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -96,6 +100,11 @@ import { FooterComponent } from './mainpage/footer/footer.component';
     ReactiveFormsModule,
     MatDialogModule,
     CommonModule,
+    MatTooltipModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+
 
   ],
   providers: [],
