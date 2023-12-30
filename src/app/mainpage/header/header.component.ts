@@ -59,17 +59,6 @@ export class HeaderComponent implements OnInit{
     });
 }
 
-checkAndNavigateRole() {
-  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
-    if (userInfo.role.includes('Admin')) {
-      this.router.navigate(['/Role']);
-    } else {
-      alert('Chỉ có Admin mới có quyền truy cập trang này.');
-    }
-  }, error => {
-    console.error('Lỗi khi lấy thông tin vai trò: ', error);
-  });
-}
   
   
 }

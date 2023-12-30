@@ -8,6 +8,7 @@ import { message } from '../class/message';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { UserInfo } from '../class/userInfo.model';
+import { RoleView } from '../class/Role-View.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,14 @@ export class AuthService {
    // Trạng thái đăng nhập của người dùng
   isLoggedIn = false;
     //Lấy danh sách User
-  GetAllUser(){
-    const url= `${this.apiUrl}/ListUser`;
-    return this.http.get(url);
-  }
+    GetAllUser(){
+      const url= `${this.apiUrl}/GetAllUser`;
+      return this.http.get(url);
+    }
+  // GetAllUser(){
+  //   const url= `${this.apiUrl}/ListUser`;
+  //   return this.http.get(url);
+  // }
   //Đăng ký
   async Register( UserData: Register, avatar: File){
     const url= `${this.apiUrl}/Register`;
@@ -117,4 +122,27 @@ export class AuthService {
     }
     return this.message;
   }
+  //Lấy danh sách role
+  getRolesList(): Observable<RoleView[]> {
+    return this.http.get<RoleView[]>(`${this.apiUrl}/ListRole`);
+  }
+  //Lấy Role user
+  getUserRoles(userId: string): Observable<RoleView[]> {
+    const url = `${this.apiUrl}/userroles/${userId}`;
+    return this.http.get<RoleView[]>(url);
+  }
+  //thêm role cho user
+  addRoleToUser(idUser: string, role: string): Observable<any> {
+    const url = `${this.apiUrl}/AddRoleUser`;
+    const formData: FormData = new FormData();
+    formData.append('idUser', idUser);
+    formData.append('role', role);
+    return this.http.post(url, formData);
+  }
+  //xóa role user
+  deleteRoleFromUser(idUser: string, role: string): Observable<any> {
+    const url = `${this.apiUrl}/DeleteRole?idUser=${encodeURIComponent(idUser)}&role=${encodeURIComponent(role)}`;
+    return this.http.delete(url);
+  }
+
 }

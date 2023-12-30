@@ -43,6 +43,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ListuserComponent } from './mainpage/listuser/listuser.component';
+import { UserformComponent } from './mainpage/userform/userform.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     CategoryformComponent,
     HomeComponent,
     FooterComponent,
+    ListuserComponent,
+    UserformComponent,
     
   ],
   imports: [
