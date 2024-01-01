@@ -28,7 +28,7 @@ import { TypeManga } from 'src/app/class/TypeMangaView.model';
 
 export class MangasComponent implements OnInit {
   
-  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'action'];
+  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'Status','action'];
   dataSource: any;
   typeMangas: TypeManga[] = [];
   
@@ -65,7 +65,7 @@ export class MangasComponent implements OnInit {
   getMangaList(){
     this.mangaService.GetAllManga().subscribe({
       next: (res : any)=>{
-        const filteredRes = res.filter((manga: any) => manga.status === true);
+        const filteredRes = res.filter((manga: any) => manga.deleteStatus === true);
         this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -78,7 +78,7 @@ export class MangasComponent implements OnInit {
   getUserMangaList(){
     this.mangaService.GetUserManga().subscribe({
       next: (res : any)=>{
-        const filteredRes = res.filter((manga: any) => manga.status === true);
+        const filteredRes = res.filter((manga: any) => manga.deleteStatus === true);
         this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -132,7 +132,7 @@ export class MangasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         try {
-          await this.mangaService.updateMangaStatus(manga.mangaId);
+          await this.mangaService.DeleteStatus(manga.mangaId);
           alert('Truyện đã được chuyển vào mục "Truyện đã xóa"');
           // this.getMangaList();
           this.ngOnInit();
@@ -144,32 +144,6 @@ export class MangasComponent implements OnInit {
       }
     });
 }
-
-
-  // onDelete(manga: any): void {
-  //   const dialogRef = this.dialog.open(ConfirmComponent, {
-  //     width: '250px',
-  //     data: { Name: manga.mangaName }
-  //   });
-  
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.mangaService.deleteManga(manga.mangaId).subscribe({
-  //         next: (response) => {
-  //           alert('Xóa truyện thành công');
-  //           // this.getMangaList();
-  //           this.ngOnInit();
-  //         },
-  //         error: (error) => {
-  //           // Xử lý lỗi tại đây
-  //           // Ví dụ: Hiển thị thông báo lỗi
-  //           alert('Không thể xóa truyện');
-  //           console.error('Có lỗi xảy ra khi xóa manga:', error);
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
 
   openAddForm(){
     const dialogRef = this.dialog.open(AddeditformComponent);

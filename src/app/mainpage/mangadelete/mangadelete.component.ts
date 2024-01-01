@@ -16,7 +16,7 @@ import { user } from 'src/app/class/user';
   styleUrls: ['./mangadelete.component.scss']
 })
 export class MangadeleteComponent implements OnInit{
-  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'action'];
+  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres','Status' ,'action'];
   dataSource: any;
   typeMangas: TypeManga[] = [];
 
@@ -44,7 +44,7 @@ export class MangadeleteComponent implements OnInit{
   getUserMangaList(){
     this.mangaService.GetUserManga().subscribe({
       next: (res : any)=>{
-        const filteredRes = res.filter((manga: any) => manga.status === false);
+        const filteredRes = res.filter((manga: any) => manga.deleteStatus === false);
         this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -56,7 +56,7 @@ export class MangadeleteComponent implements OnInit{
   getAdminMangaList(){
     this.mangaService.GetAllManga().subscribe({
       next: (res : any)=>{
-        const filteredRes = res.filter((manga: any) => manga.status === false);
+        const filteredRes = res.filter((manga: any) => manga.deleteStatus === false);
         this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -75,7 +75,18 @@ export class MangadeleteComponent implements OnInit{
     return manga.listcategory?.map((g: any) => g.genresIdName).join(', ') || 'N/A';
   }
 
-  
+  async toggleStatus(manga: any): Promise<void> {
+    try {
+      const response = await this.mangaService.updateMangaStatus(manga);
+      // Xử lý phản hồi
+      alert('Trạng thái cập nhật thành công');
+    } catch (error) {
+      // Xử lý lỗi
+      alert('Không thể thay đổi trạng thái');
+      console.error('Có lỗi xảy ra khi cập nhật trạng thái:', error);
+      this.ngOnInit();
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -98,7 +109,7 @@ export class MangadeleteComponent implements OnInit{
 
   async onRecover(manga: any): Promise<void> {
     try {
-      await this.mangaService.updateMangaStatus(manga.mangaId);
+      await this.mangaService.DeleteStatus(manga.mangaId);
       alert('Phục hồi truyện thành công');
       this.ngOnInit(); // Hoặc gọi hàm cập nhật danh sách
     } catch (error) {
@@ -106,7 +117,6 @@ export class MangadeleteComponent implements OnInit{
       console.error('Có lỗi xảy ra khi phục hồi truyện:', error);
     }
   }
-  
 
   onDelete(manga: any): void {
     const dialogRef = this.dialog.open(ConfirmComponent, {

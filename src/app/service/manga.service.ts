@@ -167,7 +167,8 @@ export class MangaService {
       throw error; // Hoặc xử lý lỗi theo cách khác
       }
     }
-  //Bỏ truyện vào thùng rác
+
+  //Cập nhập Status bộ truyện
   async updateMangaStatus(mangaId: string): Promise<any> {
       const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
       const httpOptions = {
@@ -183,6 +184,23 @@ export class MangaService {
         // Xử lý lỗi tại đây
         throw error;
       }
+  }
+  //Cập nhập trạng thái DeleteStatus
+  async DeleteStatus(mangaId: string): Promise<any> {
+  const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    }),
+    responseType: 'text' as 'json'
+  };
+
+  try {
+    return await this.http.put(`${this.apiUrl}/DeleteStatus/${mangaId}`, null, httpOptions).toPromise();
+  } catch (error) {
+    // Xử lý lỗi tại đây
+    throw error;
+  }
   }
 
   //Thêm Chapter
@@ -209,6 +227,7 @@ export class MangaService {
     // Đảm bảo bạn truyền headers vào call http
     return this.http.post(`${this.apiUrl}/${mangaId}/CreateChapter`, formData, { headers: headers });
   }
+  
   //Xóa Chapter
   deleteChapter(mangaId: string, chapterId: string): Observable<any> {
   const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
