@@ -59,6 +59,16 @@ export class HeaderComponent implements OnInit{
     });
 }
 
-  
+checkAndNavigateUser2() {
+  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
+    if (userInfo.role.includes('Admin')) {
+      this.router.navigate(['/Trash'], { queryParams: { isAdmin: true } });
+    } else {
+      this.router.navigate(['/Trash']);
+    }
+  }, error => {
+    console.error('Lỗi khi lấy thông tin người dùng: ', error);
+  });
+}
   
 }

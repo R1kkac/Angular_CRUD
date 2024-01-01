@@ -45,6 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListuserComponent } from './mainpage/listuser/listuser.component';
 import { UserformComponent } from './mainpage/userform/userform.component';
+import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { UserformComponent } from './mainpage/userform/userform.component';
     FooterComponent,
     ListuserComponent,
     UserformComponent,
+    MangadeleteComponent,
     
   ],
   imports: [

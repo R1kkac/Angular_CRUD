@@ -167,7 +167,8 @@ export class MangaService {
       throw error; // Hoặc xử lý lỗi theo cách khác
       }
     }
-    async updateMangaStatus(mangaId: string): Promise<any> {
+  //Bỏ truyện vào thùng rác
+  async updateMangaStatus(mangaId: string): Promise<any> {
       const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
       const httpOptions = {
         headers: new HttpHeaders({
@@ -182,7 +183,7 @@ export class MangaService {
         // Xử lý lỗi tại đây
         throw error;
       }
-    }
+  }
 
   //Thêm Chapter
   createChapter(mangaId: string, chapter: string, mangaImages: File[], mangaUrls: string[]): Observable<any> {

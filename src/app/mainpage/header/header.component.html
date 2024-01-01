@@ -45,7 +45,9 @@
       <mat-list-item>
         <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
       </mat-list-item>
-      
+      <mat-list-item>
+        <button mat-button (click)="checkAndNavigateUser2()" ><mat-icon>delete</mat-icon> Truyện đã xóa</button>
+      </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
 

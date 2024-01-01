@@ -66,24 +66,24 @@
         <td mat-cell *matCellDef="let row"> {{ getGenres(row) }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Status">
+      <!-- <ng-container matColumnDef="Status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let row">
           <mat-slide-toggle [checked]="row.status" (change)="toggleStatus(row.mangaId)"></mat-slide-toggle>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let row">
           <button mat-icon-button (click)="openEditForm(row.mangaId)" matTooltip="Chỉnh sửa">
-            <mat-icon color="accent">edit</mat-icon>
+            <mat-icon style="color: #1e88e5;">edit</mat-icon>
           </button>
           <button mat-icon-button (click)="onDelete(row)" matTooltip="Xóa">
-            <mat-icon color="warn">delete</mat-icon>
+            <mat-icon color="warn">remove_circle</mat-icon>
           </button>
           <button mat-icon-button (click)="openListChapter(row.mangaId)" matTooltip="Cài đặt Chương">
-            <mat-icon color="neon">list</mat-icon>
+            <mat-icon>list</mat-icon>
           </button>
         </td>
       </ng-container>

@@ -28,7 +28,7 @@ import { TypeManga } from 'src/app/class/TypeMangaView.model';
 
 export class MangasComponent implements OnInit {
   
-  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'Status' , 'action'];
+  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'action'];
   dataSource: any;
   typeMangas: TypeManga[] = [];
   
@@ -65,7 +65,8 @@ export class MangasComponent implements OnInit {
   getMangaList(){
     this.mangaService.GetAllManga().subscribe({
       next: (res : any)=>{
-        this.dataSource = new MatTableDataSource(res);
+        const filteredRes = res.filter((manga: any) => manga.status === true);
+        this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
@@ -77,13 +78,13 @@ export class MangasComponent implements OnInit {
   getUserMangaList(){
     this.mangaService.GetUserManga().subscribe({
       next: (res : any)=>{
-        this.dataSource = new MatTableDataSource(res);
+        const filteredRes = res.filter((manga: any) => manga.status === true);
+        this.dataSource = new MatTableDataSource(filteredRes);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
       error: console.log,
     });
-    
   }
 
 
@@ -128,23 +129,47 @@ export class MangasComponent implements OnInit {
       data: { Name: manga.mangaName }
     });
   
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
       if (result) {
-        this.mangaService.deleteManga(manga.mangaId).subscribe({
-          next: (response) => {
-            alert('Xóa truyện thành công');
-            // this.getMangaList();
-            this.ngOnInit();
-          },
-          error: (error) => {
-            // Xử lý lỗi tại đây
-            // Ví dụ: Hiển thị thông báo lỗi
-            console.error('Có lỗi xảy ra khi xóa manga:', error);
-          }
-        });
+        try {
+          await this.mangaService.updateMangaStatus(manga.mangaId);
+          alert('Truyện đã được chuyển vào mục "Truyện đã xóa"');
+          // this.getMangaList();
+          this.ngOnInit();
+        } catch (error) {
+          // Xử lý lỗi tại đây
+          alert('Không thể xóa truyện');
+          console.error('Có lỗi xảy ra khi xóa manga:', error);
+        }
       }
     });
-  }
+}
+
+
+  // onDelete(manga: any): void {
+  //   const dialogRef = this.dialog.open(ConfirmComponent, {
+  //     width: '250px',
+  //     data: { Name: manga.mangaName }
+  //   });
+  
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       this.mangaService.deleteManga(manga.mangaId).subscribe({
+  //         next: (response) => {
+  //           alert('Xóa truyện thành công');
+  //           // this.getMangaList();
+  //           this.ngOnInit();
+  //         },
+  //         error: (error) => {
+  //           // Xử lý lỗi tại đây
+  //           // Ví dụ: Hiển thị thông báo lỗi
+  //           alert('Không thể xóa truyện');
+  //           console.error('Có lỗi xảy ra khi xóa manga:', error);
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
 
   openAddForm(){
     const dialogRef = this.dialog.open(AddeditformComponent);

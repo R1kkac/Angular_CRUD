@@ -13,6 +13,7 @@ import { ListchapterComponent } from './mainpage/listchapter/listchapter.compone
 import { CategorysComponent } from './mainpage/categorys/categorys.component';
 import { HomeComponent } from './mainpage/home/home.component';
 import { ListuserComponent } from './mainpage/listuser/listuser.component';
+import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.component';
 
 const routes: Routes = [
   { path: '' , component : HomeComponent, canActivate:[authGuard]},
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'chapters/:mangaId' , component : ListchapterComponent},
   { path: 'Categorys' , component : CategorysComponent, canActivate:[authGuard]},
   { path: 'Users' , component : ListuserComponent, canActivate:[authGuard]},
+  { path: 'Trash' , component : MangadeleteComponent, canActivate:[authGuard]},
 ];
 
 @NgModule({
