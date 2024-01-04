@@ -5,28 +5,28 @@
 <div mat-dialog-content class="content">
     <div class="row">
           <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
+            <mat-label>Tên truyện</mat-label>
             <input matInput type="text" placeholder="Naruto" formControlName="mangaName">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Details</mat-label>
+            <mat-label>Mô tả</mat-label>
             <input matInput type="text" formControlName="mangaDetails">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>AlternateName</mat-label>
+            <mat-label>Tên khác</mat-label>
             <input matInput type="text" formControlName="mangaAlternateName">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Author</mat-label>
+            <mat-label>Tác giả</mat-label>
             <input matInput type="text" formControlName="mangaAuthor">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Artist</mat-label>
+            <mat-label>Họa sĩ</mat-label>
             <input matInput type="text" formControlName="mangaArtist">
           </mat-form-field>
           
           <mat-form-field appearance="outline">
-            <mat-label>Type</mat-label>
+            <mat-label>Kiểu truyện</mat-label>
             <mat-select formControlName="type">
               <mat-option *ngFor="let typeManga of typeMangas" [value]="typeManga.id">
                 {{ typeManga.name }}
@@ -36,7 +36,7 @@
           
 
           <mat-form-field appearance="outline">
-            <mat-label>Additional Genres</mat-label>
+            <mat-label>Thể loại</mat-label>
             <mat-select formControlName="genres" multiple (selectionChange)="onGenreChange($event)">
               <mat-option *ngFor="let genre of genresList" [value]="genre.genreId">{{genre.genresIdName}}</mat-option>
             </mat-select>
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button (click)="closeAddEditForm()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Update' : 'Save'}}</button>
+    <button mat-raised-button (click)="closeAddEditForm()">Hủy</button>
+    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Cập tạo' : 'Thêm'}}</button>
 </div>
 </form>

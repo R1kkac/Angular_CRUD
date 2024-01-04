@@ -68,6 +68,24 @@ export class ChapterformComponent implements OnInit{
   }
 
   createNewChapter(): void {
+  let chapterName = this.chapterForm.get('ChapterName')?.value.trim().toLowerCase();
+  const mangaId = this.data.mangaId;
+
+  // Kiểm tra trùng lập tên chương trước khi tạo mới
+  this._mangaService.getAllNameChapter(mangaId).subscribe(chapterNames => {
+    let isDuplicate = chapterNames.some(name => name.trim().toLowerCase() === chapterName);
+
+    if (isDuplicate) {
+      alert('Tên chương đã tồn tại. Vui lòng chọn tên khác.');
+      return;
+    }
+
+    // Nếu tên chương không trùng, tiếp tục tạo mới
+    this.performCreateChapter();
+  });
+  }
+
+  performCreateChapter() {
     const chapterData = {
       ChapterId: this.data.ChapterId, // Hoặc logic khác để xác định ChapterId
       ChapterName: this.chapterForm.get('ChapterName')?.value,
@@ -75,9 +93,7 @@ export class ChapterformComponent implements OnInit{
       ChapterDate: this.chapterForm.get('ChapterDate')?.value,
       MangaId: this.data.mangaId // MangaId được lấy từ dữ liệu truyền vào
     };
-
     const imageUrls = this.chapterForm.get('imageUrls')?.value.split(',');
-
     this._mangaService.createChapter(this.data.mangaId, JSON.stringify(chapterData), this.files, imageUrls)
       .subscribe({
         next: (response) => {
@@ -96,6 +112,26 @@ export class ChapterformComponent implements OnInit{
   }
   
   updateChapter(): void {
+    let currentChapterName = this.data.chapterName?.trim().toLowerCase(); // Tên chương hiện tại
+    let newChapterName = this.chapterForm.get('ChapterName')?.value.trim().toLowerCase(); // Tên chương mới
+    const mangaId = this.data.mangaId;
+  
+    this._mangaService.getAllNameChapter(mangaId).subscribe(chapterNames => {
+      let isDuplicate = chapterNames.some(name => {
+        let existingName = name.trim().toLowerCase();
+        return existingName === newChapterName && existingName !== currentChapterName;
+      });
+  
+      if (isDuplicate) {
+        alert('Tên chương đã tồn tại. Vui lòng chọn tên khác.');
+        return;
+      }
+  
+      this.performUpdateChapter();
+    });
+  }
+
+  performUpdateChapter() {
     const chapterData = {
       ChapterId: this.chapterForm.get('ChapterId')?.value,
       ChapterName: this.chapterForm.get('ChapterName')?.value,
@@ -120,7 +156,6 @@ export class ChapterformComponent implements OnInit{
         }
       });
   }
-
   
   closeForm(): void {
     this.dialogRef.close();

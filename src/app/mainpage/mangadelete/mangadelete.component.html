@@ -1,7 +1,7 @@
 <div class="main-body">
     <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-label>Tìm kiếm</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
       </mat-form-field>
        
       
@@ -15,12 +15,12 @@
           </ng-container>
       
           <ng-container matColumnDef="mangaName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên Truyện </th>
             <td mat-cell *matCellDef="let row"> {{row.mangaName}} </td>
           </ng-container>
       
           <ng-container matColumnDef="mangaDetails">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Details </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mô tả </th>
             <td mat-cell *matCellDef="let row">
               <span *ngIf="row.mangaDetails?.length > 50">{{ row.mangaDetails | slice:0:50 }}...</span>
               <span *ngIf="!(row.mangaDetails?.length > 50)">{{ row.mangaDetails|| 'Chưa có dữ liệu'}}</span>
@@ -33,51 +33,51 @@
       
     
           <ng-container matColumnDef="mangaImage">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ảnh bìa </th>
             <td mat-cell *matCellDef="let row">
               <img [src]="row.mangaImage || 'path-to-default-image.jpg'" alt="Manga Image" class="manga-image">
             </td>
           </ng-container>
     
           <ng-container matColumnDef="mangaAlternateName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> AlternateName </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên khác </th>
             <td mat-cell *matCellDef="let row"> {{row.mangaAlternateName|| 'Chưa có dữ liệu'}} </td>
           </ng-container>
     
           <ng-container matColumnDef="mangaAuthor">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tác giả </th>
             <td mat-cell *matCellDef="let row"> {{row.mangaAuthor}} </td>
           </ng-container>
     
           <ng-container matColumnDef="mangaArtist">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Artist </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Họa sĩ </th>
             <td mat-cell *matCellDef="let row"> {{row.mangaArtist|| 'Chưa có dữ liệu'}} </td>
           </ng-container>
     
           <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kiểu truyện </th>
             <td mat-cell *matCellDef="let row"> {{getTypeName(row.type)}} </td>
           </ng-container>
     
           <ng-container matColumnDef="genres">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Genres </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Thể loại </th>
             <td mat-cell *matCellDef="let row"> {{ getGenres(row) }} </td>
           </ng-container>
     
           <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hoàn thành </th>
             <td mat-cell *matCellDef="let row">
               <mat-slide-toggle [checked]="row.status" (change)="toggleStatus(row.mangaId)"></mat-slide-toggle>
             </td>
           </ng-container>
     
           <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>
             <td mat-cell *matCellDef="let row">
               <button mat-icon-button (click)="onDelete(row)" matTooltip="Xóa truyện">
                 <mat-icon color="warn">remove_circle</mat-icon>
               </button>
-              <button mat-icon-button (click)="onRecover(row)" matTooltip="Phục hồi truyện">
+              <button mat-icon-button (click)="onRecover(row)" matTooltip="Khôi phục truyện">
                 <mat-icon style="color: #4CAF50;">restore</mat-icon>
               </button>
             </td>

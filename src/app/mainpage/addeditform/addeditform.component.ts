@@ -28,7 +28,7 @@ export class AddeditformComponent implements OnInit{
       mangaAuthor:['', Validators.required],
       mangaArtist:'',
       type:'',
-      genres: [[]]
+      genres: [[], Validators.required]
     });
   }
 
@@ -132,7 +132,7 @@ selectFile(event: any): void {
 
 //Tạo Truyện
 private createManga(): void {
-  let mangaName = this.empForm.get('mangaName')?.value.trim().toUpperCase();
+  let mangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
   this.empForm.get('mangaName')?.setValue(mangaName);
   this._mangaService.checkMangaNameExists(mangaName).subscribe(exists => {
     if (exists) {
@@ -160,7 +160,7 @@ private performCreate(): void {
 
 
 private updateManga(): void {
-    const newMangaName = this.empForm.get('mangaName')?.value.trim().toUpperCase();
+    const newMangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
   this.empForm.get('mangaName')?.setValue(newMangaName);
 
   // Kiểm tra nếu tên truyện mới nhập vào khác với tên truyện ban đầu

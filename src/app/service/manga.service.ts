@@ -287,7 +287,10 @@ export class MangaService {
       responseType: 'text' as 'json'
     });
   }
-  
+  //Lấy tên chương bộ truyện
+  getAllNameChapter(mangaId: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/GetAllNameChapter/${mangaId}`);
+  }
 
 }
 

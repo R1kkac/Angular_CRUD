@@ -5,17 +5,17 @@
 <div mat-dialog-content class="content">
     <div class="row">
           <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
+            <mat-label>Tên thể loại</mat-label>
             <input matInput type="text" placeholder="Học Đường" formControlName="genresIdName">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Details</mat-label>
+            <mat-label>Mô tả</mat-label>
             <input matInput type="text" formControlName="info">
           </mat-form-field>
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button (click)="closeAddEditForm()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Update' : 'Save'}}</button>
+    <button mat-raised-button (click)="closeAddEditForm()">Hủy</button>
+    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
 </div>
 </form>

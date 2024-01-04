@@ -14,7 +14,6 @@ import { LoginComponent } from './userpage/login/login.component';
 import { RegisterComponent } from './userpage/register/register.component';
 import { HeaderComponent } from './mainpage/header/header.component';
 import { UserinfoComponent } from './userpage/userinfo/userinfo.component';
-import { CarouselComponent } from './mainpage/carousel/carousel.component';
 import { MangainfoComponent } from './mangapage/mangainfo/mangainfo.component';
 import { ListchapterComponent } from './mangapage/listchapter/listchapter.component';
 import { ViewchapterComponent } from './mangapage/viewchapter/viewchapter.component';
@@ -23,7 +22,6 @@ import { SearbarV2Component } from './mainpage/searbar-v2/searbar-v2.component';
 import { MessageComponent } from './mainpage/message/message.component';
 import { UpdateInfoUserComponent } from './userpage/update-info-user/update-info-user.component';
 import { UserfollowingComponent } from './userpage/userfollowing/userfollowing.component';
-import { ListmangaComponent } from './mainpage/listmanga/listmanga.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -57,7 +55,6 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
     RegisterComponent,
     HeaderComponent,
     UserinfoComponent,
-    CarouselComponent,
     MangainfoComponent,
     ListchapterComponent,
     ViewchapterComponent,
@@ -65,7 +62,6 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
     MessageComponent,
     UpdateInfoUserComponent,
     UserfollowingComponent,
-    ListmangaComponent,
     AddeditformComponent,
     ConfirmComponent,
     ChapterformComponent,

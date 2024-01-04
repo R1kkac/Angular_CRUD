@@ -1,8 +1,8 @@
 <div class="main-body">
   <button mat-button (click)="goBackToMangas()">Quay Lại Mangas</button>
   <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <mat-label>Tìm kiếm</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
     </mat-form-field>
   
     <button mat-icon-button matTooltip="Thêm chương" (click)="openAddForm()"><mat-icon>add</mat-icon></button>
@@ -10,32 +10,28 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
     
-        <!-- ID Column -->
         <ng-container matColumnDef="chapterId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
           <td mat-cell *matCellDef="let row"> {{row.chapterId}} </td>
         </ng-container>
     
-        <!-- Progress Column -->
         <ng-container matColumnDef="chapterName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên chương </th>
           <td mat-cell *matCellDef="let row"> {{row.chapterName}} </td>
         </ng-container>
     
-        <!-- Name Column -->
         <ng-container matColumnDef="chapterTitle">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tiêu đề </th>
           <td mat-cell *matCellDef="let row"> {{row.chapterTitle}} </td>
         </ng-container>
     
-        <!-- Fruit Column -->
         <ng-container matColumnDef="chapterDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đăng </th>
           <td mat-cell *matCellDef="let row"> {{row.chapterDate}} </td>
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>
           <td mat-cell *matCellDef="let row">
             <button matTooltip="Sửa chương" (click)="openEditForm(row)"><mat-icon color="primary">edit</mat-icon></button>
             <button matTooltip="Xóa chương" mat-icon-button (click)="onDelete(row)"><mat-icon color="warn">delete</mat-icon></button>
@@ -47,7 +43,7 @@
     
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4">Không có dữ liệu "{{input.value}}"</td>
         </tr>
       </table>
     
