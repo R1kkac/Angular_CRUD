@@ -1,33 +1,45 @@
-.content {
-    padding-top: 10px;
-}
-.row {
-display: flex;
-gap: 10px;
+// .content {
+//     padding-top: 10px;
+// }
+// .row {
+// display: flex;
+// gap: 10px;
 
-mat-form-field {
-width: 100%;
-}
-}
+// mat-form-field {
+// width: 100%;
+// }
+// }
 
-.action {
-    padding: 0px 25px 20px;
+// .action {
+//     padding: 0px 25px 20px;
 
-    button {
-    flex: 1;
-}
-}
-.image-container {
-    display: flex;
-    justify-content: center; // Căn giữa hình ảnh
-    margin-bottom: 20px; // Tạo khoảng cách giữa hình ảnh và các phần tử khác
+//     button {
+//     flex: 1;
+// }
+// }
+// .image-container {
+//     display: flex;
+//     justify-content: center; // Căn giữa hình ảnh
+//     margin-bottom: 20px; // Tạo khoảng cách giữa hình ảnh và các phần tử khác
   
-    img {
-      max-width: 100%; // Đảm bảo hình ảnh không vượt quá container
-      max-height: 200px; // Giới hạn chiều cao tối đa của hình ảnh
-      object-fit: cover; // Đảm bảo hình ảnh che đầy khu vực được chỉ định mà không bị méo
-      border: 1px solid #ddd; // Viền màu xám nhạt
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Đổ bóng nhẹ
-      border-radius: 4px; // Bo góc nhẹ
-    }
-  }
+//     img {
+//       max-width: 100%; // Đảm bảo hình ảnh không vượt quá container
+//       max-height: 200px; // Giới hạn chiều cao tối đa của hình ảnh
+//       object-fit: cover; // Đảm bảo hình ảnh che đầy khu vực được chỉ định mà không bị méo
+//       border: 1px solid #ddd; // Viền màu xám nhạt
+//       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Đổ bóng nhẹ
+//       border-radius: 4px; // Bo góc nhẹ
+//     }
+//   }
+
+.image-preview {
+  max-height: 200px;
+  max-width: 100%;
+  margin-top: 15px;
+}
+
+.image-container {
+  margin-top: 15px;
+}
+
+/* Thêm các CSS cần thiết khác */

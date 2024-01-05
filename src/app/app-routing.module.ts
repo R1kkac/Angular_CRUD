@@ -14,6 +14,8 @@ import { CategorysComponent } from './mainpage/categorys/categorys.component';
 import { HomeComponent } from './mainpage/home/home.component';
 import { ListuserComponent } from './mainpage/listuser/listuser.component';
 import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.component';
+import { AddeditformComponent } from './mainpage/addeditform/addeditform.component';
+import { ChapterformComponent } from './mainpage/chapterform/chapterform.component';
 
 const routes: Routes = [
   { path: '' , component : HomeComponent, canActivate:[authGuard]},
@@ -31,6 +33,12 @@ const routes: Routes = [
   { path: 'Categorys' , component : CategorysComponent, canActivate:[authGuard]},
   { path: 'Users' , component : ListuserComponent, canActivate:[authGuard]},
   { path: 'Trash' , component : MangadeleteComponent, canActivate:[authGuard]},
+  { path: 'Add-manga' , component : AddeditformComponent, canActivate:[authGuard]},
+  { path: 'Edit-manga/:mangaId' , component : AddeditformComponent, canActivate:[authGuard]},
+  { path: ':mangaId/List-chapter' , component : ListchapterComponent, canActivate:[authGuard]},
+  { path: 'Add-chapter' , component : ChapterformComponent, canActivate:[authGuard]},
+  { path: 'Edit-chapter' , component : ChapterformComponent, canActivate:[authGuard]},
+
 ];
 
 @NgModule({

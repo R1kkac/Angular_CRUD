@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +12,9 @@ import { MangaService } from 'src/app/service/manga.service';
 import { ChapterformComponent } from '../chapterform/chapterform.component';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -20,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   templateUrl: './listchapter.component.html',
   styleUrls: ['./listchapter.component.scss'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,MatIconModule,MatTooltipModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,MatIconModule,MatButtonModule, MatDialogModule,CommonModule,MatTooltipModule,MatSlideToggleModule],
 })
 export class ListchapterComponent implements OnInit{
   displayedColumns: string[] = ['chapterId', 'chapterName', 'chapterTitle', 'chapterDate','action'];

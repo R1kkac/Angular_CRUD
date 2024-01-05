@@ -1,11 +1,16 @@
 <div class="main-body">
-  <button mat-button (click)="goBackToMangas()">Quay Lại Mangas</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <button mat-raised-button color="warn" (click)="goBackToMangas()">Quay lại truyện tranh</button>
+    <h1>Danh sách chương</h1>
+    <button mat-icon-button matTooltip="Thêm chương" (click)="openAddForm()"><mat-icon>add</mat-icon></button>
+  </div>
+  
   <mat-form-field>
       <mat-label>Tìm kiếm</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
     </mat-form-field>
   
-    <button mat-icon-button matTooltip="Thêm chương" (click)="openAddForm()"><mat-icon>add</mat-icon></button>
+    
     
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
@@ -33,10 +38,12 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>
           <td mat-cell *matCellDef="let row">
-            <button matTooltip="Sửa chương" (click)="openEditForm(row)"><mat-icon color="primary">edit</mat-icon></button>
+            <button (click)="openEditForm(row)"><mat-icon color="primary" matTooltip="Sửa chương" >edit</mat-icon></button>
             <button matTooltip="Xóa chương" mat-icon-button (click)="onDelete(row)"><mat-icon color="warn">delete</mat-icon></button>
           </td>
         </ng-container>
+
+        
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

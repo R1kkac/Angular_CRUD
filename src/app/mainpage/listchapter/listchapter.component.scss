@@ -1,14 +1,25 @@
 .main-body {
-    padding-top: 20px;
-    margin: 0 auto;
-    max-width: 1248px;
-    mat-form-field {
-      width: 100%;
-    }
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1248px;
+  mat-form-field {
+    width: 100%;
   }
-  
-  .action {
-    display: flex;
-    gap: 5px;
-  }
-  
+}
+
+.action {
+  display: flex;
+  gap: 5px;
+}
+
+.manga-image {
+  width: 100px; /* hoặc kích thước mong muốn */
+  height: auto; /* giữ tỷ lệ hình ảnh */
+  border-radius: 4px; /* làm tròn góc nếu cần */
+  object-fit: cover; /* đảm bảo hình ảnh phủ kín khu vực mà không bị méo */
+}
+
+button.mat-icon-button {
+  border: none;  /* Loại bỏ border */
+  background: transparent;  /* Đặt nền trong suốt */
+}

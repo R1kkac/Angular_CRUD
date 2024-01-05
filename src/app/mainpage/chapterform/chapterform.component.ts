@@ -79,7 +79,6 @@ export class ChapterformComponent implements OnInit{
       alert('Tên chương đã tồn tại. Vui lòng chọn tên khác.');
       return;
     }
-
     // Nếu tên chương không trùng, tiếp tục tạo mới
     this.performCreateChapter();
   });
@@ -156,6 +155,7 @@ export class ChapterformComponent implements OnInit{
         }
       });
   }
+
   
   closeForm(): void {
     this.dialogRef.close();

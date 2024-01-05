@@ -145,44 +145,52 @@ export class MangasComponent implements OnInit {
     });
 }
 
-  openAddForm(){
-    const dialogRef = this.dialog.open(AddeditformComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
-      this.ngOnInit();
-    });
+  openAddForm() {
+  this.router.navigate(['/Add-manga']); // Sử dụng route tương ứng của bạn
+  }
+  // openAddForm(){
+  //   const dialogRef = this.dialog.open(AddeditformComponent);
+  //   dialogRef.afterClosed().subscribe(() => {
+  //     // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
+  //     this.ngOnInit();
+  //   });
+  // }
+
+
+  openEditForm(mangaId: string) {
+    this.router.navigate(['/Edit-manga', mangaId]); 
   }
  
-  openEditForm(mangaId: string): void {
-    this.mangaService.Getinfomanga(mangaId).then(mangaData => {
-      if (mangaData) {
-        const dialogRef = this.dialog.open(AddeditformComponent, {
-          data: { 
-            mangaId: mangaId,
-            mangaName: mangaData.mangaName // Truyền thêm mangaName vào dialog
-          }
-        });
+  // openEditForm(mangaId: string): void {
+  //   this.mangaService.Getinfomanga(mangaId).then(mangaData => {
+  //     if (mangaData) {
+  //       const dialogRef = this.dialog.open(AddeditformComponent, {
+  //         data: { 
+  //           mangaId: mangaId,
+  //           mangaName: mangaData.mangaName
+  //         }
+  //       });
   
-        dialogRef.afterClosed().subscribe(() => {
-          // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
-          this.ngOnInit();
-        });
-      } else {
-        console.error('Không thể lấy thông tin manga');
-        // Xử lý lỗi hoặc thông báo cho người dùng
-      }
-    }).catch(error => {
-      console.error('Lỗi khi lấy thông tin manga:', error);
-      // Xử lý lỗi hoặc thông báo cho người dùng
-    });
-  }
+  //       dialogRef.afterClosed().subscribe(() => {
+  //         // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
+  //         this.ngOnInit();
+  //       });
+  //     } else {
+  //       console.error('Không thể lấy thông tin manga');
+  //       // Xử lý lỗi hoặc thông báo cho người dùng
+  //     }
+  //   }).catch(error => {
+  //     console.error('Lỗi khi lấy thông tin manga:', error);
+  //     // Xử lý lỗi hoặc thông báo cho người dùng
+  //   });
+  // }
   openListChapter(mangaId: string): void {
     this.route.queryParams.subscribe(params => {
       const isPersonal  = params['isPersonal'] === 'true';
       if (isPersonal) {
-        this.router.navigate(['chapters', mangaId], { queryParams: { isPersonal: isPersonal } });
+        this.router.navigate([mangaId,'List-chapter'], { queryParams: { isPersonal: isPersonal } });
       } else {
-        this.router.navigate(['chapters', mangaId]);
+        this.router.navigate([mangaId,'List-chapter']);
       }
     });
   }

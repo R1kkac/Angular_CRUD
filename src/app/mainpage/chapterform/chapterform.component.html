@@ -33,6 +33,6 @@
 <div mat-dialog-actions>
     <button mat-raised-button (click)="closeForm()">Hủy</button>
     <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!chapterForm.valid">Tạo Chương</button> -->
-    <button mat-raised-button color="primary" (click)="onSubmit()">{{chapterForm.valid ? 'Cập nhập' : 'Thêm'}}</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
 </div>
 </form>
