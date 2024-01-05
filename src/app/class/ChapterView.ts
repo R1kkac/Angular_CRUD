@@ -15,3 +15,11 @@ export interface ChapterView {
     Chapter_Date: string;
     Manga_Id: string;
   }
+  export interface chapterView3
+  {
+    chapterId: string;
+    chapterName: string;
+    chapterTitle: string;
+    chapterDate: string;
+    chapterIndex: string;
+  }

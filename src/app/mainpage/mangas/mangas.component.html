@@ -1,17 +1,20 @@
 <div class="main-body">
 
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="header">
     <h1>Danh sách truyện tranh</h1>
-    <button mat-icon-button matTooltip="Thêm truyện" (click)="openAddForm()"><mat-icon color="primary">add</mat-icon></button>
-  </div>
+    <button class="btn btn-primary" (click)="openAddForm()">Thêm truyện</button>
+</div>
   
-  <mat-form-field>
+<div class="search-bar">
+  <mat-form-field appearance="fill">
     <mat-label>Tìm kiếm</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
   </mat-form-field>
+</div>
+  
    
   
-  <div class="mat-elevation-z8">
+  <div class="table-container mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
   
 

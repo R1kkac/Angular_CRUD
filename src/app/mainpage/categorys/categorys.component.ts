@@ -75,7 +75,7 @@ export class CategorysComponent implements OnInit{
             } else {
               // Xử lý lỗi chung
               console.error('Có lỗi xảy ra khi xóa thể loại:', error);
-              alert('Không thể xóa thể loại. Vui lòng thử lại sau.');
+              alert('Bạn không có quyền quản lý thể loại!');
             }
           }
         });

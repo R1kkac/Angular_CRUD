@@ -1,0 +1,76 @@
+.image-sorter-container {
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.image-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: move;
+}
+
+.image-info {
+  display: flex;
+  align-items: center;
+}
+
+.image-index {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.image-thumbnail {
+  width: 100px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.image-name {
+  flex-grow: 1;
+}
+
+.image-actions button {
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.image-actions .delete-button {
+  background-color: red;
+}
+
+.save-order {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-order .btn-success {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

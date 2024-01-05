@@ -1,0 +1,26 @@
+<div class="image-sorter-container">
+  <div class="toolbar">
+    <button mat-raised-button color="warn" (click)="goBackToListChapter()">Quay lại</button>
+    <h2>Sắp xếp ảnh chương</h2>
+    <button class="btn btn-primary" (click)="openUploadForm()">Thêm ảnh</button>
+  </div>
+  <div class="save-order">
+    <button class="btn btn-success" (click)="saveOrder()">Lưu thứ tự</button>
+  </div>
+  <div class="image-list" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let image of images; let i = index" class="image-item" cdkDrag>
+      <div class="image-info">
+        <div class="image-index">{{ i + 1 }}</div>
+        <img [src]="image.imageUrl" [alt]="image.imageName" class="image-thumbnail">
+        <div class="image-name">{{ image.imageName }}</div>
+      </div>
+      <div class="image-actions">
+        <button (click)="moveToStart(i)">Đầu tiên</button>
+        <button (click)="moveToEnd(i)">Cuối cùng</button>
+        <button (click)="deleteImage(i)" class="delete-button">Xóa</button>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

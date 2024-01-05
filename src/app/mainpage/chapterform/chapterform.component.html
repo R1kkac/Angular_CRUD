@@ -20,19 +20,20 @@
             </mat-error>
           </mat-form-field>
           <!-- Nếu bạn muốn tải lên hình ảnh -->
-          <div class="image-container" formGroupName="ChapterImages">
+          <!-- <div class="image-container" formGroupName="ChapterImages">
             <input type="file" (change)="onFileSelected($event)" multiple>
           </div>
           <mat-form-field appearance="fill">
             <mat-label>URLs Hình Ảnh</mat-label>
             <input matInput formControlName="imageUrls">
             <mat-hint>Nhập URLs, mỗi URL cách nhau bằng dấu phẩy.</mat-hint>
-          </mat-form-field>
+          </mat-form-field> -->
     </div>
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button (click)="closeForm()">Hủy</button>
     <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!chapterForm.valid">Tạo Chương</button> -->
     <button mat-raised-button color="primary" (click)="onSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
+    
 </div>
 </form>

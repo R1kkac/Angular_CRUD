@@ -135,6 +135,11 @@ export class ListchapterComponent implements OnInit{
     });
   }
 
+  openListImage(row: any): void {
+    this.router.navigate(['/image-sorter', this.mangaId, row.chapterId]);
+
+  }
+
   goBackToMangas() {
     this.route.queryParams.subscribe(params => {
       const isPersonal  = params['isPersonal'] === 'true';

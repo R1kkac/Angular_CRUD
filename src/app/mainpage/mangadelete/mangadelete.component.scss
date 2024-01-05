@@ -1,20 +1,42 @@
 .main-body {
-    padding-top: 20px;
-    margin: 0 auto;
-    max-width: 1248px;
-    mat-form-field {
-      width: 100%;
-    }
-  }
-  
-  .action {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .manga-image {
-    width: 100px; /* hoặc kích thước mong muốn */
-    height: auto; /* giữ tỷ lệ hình ảnh */
-    border-radius: 4px; /* làm tròn góc nếu cần */
-    object-fit: cover; /* đảm bảo hình ảnh phủ kín khu vực mà không bị méo */
-  }
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1248px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto; /* Để xử lý trường hợp bảng quá rộng */
+}
+
+.action {
+  display: flex;
+  gap: 10px;
+}
+
+.mat-icon-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.manga-image {
+  width: 100px; /* hoặc kích thước mong muốn */
+  height: auto; /* giữ tỷ lệ hình ảnh */
+  border-radius: 4px; /* làm tròn góc nếu cần */
+  object-fit: cover; /* đảm bảo hình ảnh phủ kín khu vực mà không bị méo */
+}

@@ -1,0 +1,24 @@
+<div mat-dialog-title>
+    <h1>Images Form</h1>
+</div>
+<form [formGroup]="imagesForm" novalidate>
+<div mat-dialog-content class="content">
+    <div class="row">
+        
+
+          <div class="image-container" formGroupName="ChapterImages">
+            <input type="file" (change)="onFileSelected($event)" multiple>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>URLs Hình Ảnh</mat-label>
+            <input matInput formControlName="imageUrls">
+            <mat-hint>Nhập URLs, mỗi URL cách nhau bằng dấu phẩy.</mat-hint>
+          </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="closeForm()">Hủy</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
+    
+</div>
+</form>

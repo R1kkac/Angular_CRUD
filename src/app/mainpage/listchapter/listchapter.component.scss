@@ -1,25 +1,40 @@
 .main-body {
-  padding-top: 20px;
+  padding: 20px;
   margin: 0 auto;
   max-width: 1248px;
-  mat-form-field {
-    width: 100%;
-  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto; /* Để xử lý trường hợp bảng quá rộng */
 }
 
 .action {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
-.manga-image {
-  width: 100px; /* hoặc kích thước mong muốn */
-  height: auto; /* giữ tỷ lệ hình ảnh */
-  border-radius: 4px; /* làm tròn góc nếu cần */
-  object-fit: cover; /* đảm bảo hình ảnh phủ kín khu vực mà không bị méo */
+.mat-icon-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
+ .btn {
+  border: none;
+ }
 
-button.mat-icon-button {
-  border: none;  /* Loại bỏ border */
-  background: transparent;  /* Đặt nền trong suốt */
-}
+/* Các style khác giữ nguyên */

@@ -1,11 +1,19 @@
 <div class="main-body">
+
+  <div class="header">
+    <h1>Danh sách truyện tranh vừa xóa</h1>
+  </div>
+
+  <div class="search-bar">
     <mat-form-field>
-        <mat-label>Tìm kiếm</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
-      </mat-form-field>
+      <mat-label>Tìm kiếm</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
+    </mat-form-field>
+  </div>
+    
        
       
-      <div class="mat-elevation-z8">
+      <div class="table-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
       
     

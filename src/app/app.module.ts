@@ -44,6 +44,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListuserComponent } from './mainpage/listuser/listuser.component';
 import { UserformComponent } from './mainpage/userform/userform.component';
 import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.component';
+import { ImagesorterComponent } from './mainpage/imagesorter/imagesorter.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { UploadimagesComponent } from './mainpage/uploadimages/uploadimages.component';
 
 
 @NgModule({
@@ -72,6 +75,8 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
     ListuserComponent,
     UserformComponent,
     MangadeleteComponent,
+    ImagesorterComponent,
+    UploadimagesComponent,
     
   ],
   imports: [
@@ -106,6 +111,7 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
     MatInputModule,
     MatButtonModule,
     MatSlideToggleModule,
+    DragDropModule,
 
 
   ],

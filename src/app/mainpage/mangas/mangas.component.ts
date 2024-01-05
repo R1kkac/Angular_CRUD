@@ -188,9 +188,9 @@ export class MangasComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const isPersonal  = params['isPersonal'] === 'true';
       if (isPersonal) {
-        this.router.navigate([mangaId,'List-chapter'], { queryParams: { isPersonal: isPersonal } });
+        this.router.navigate(['List-chapter',mangaId], { queryParams: { isPersonal: isPersonal } });
       } else {
-        this.router.navigate([mangaId,'List-chapter']);
+        this.router.navigate(['List-chapter',mangaId,]);
       }
     });
   }

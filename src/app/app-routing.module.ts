@@ -16,6 +16,7 @@ import { ListuserComponent } from './mainpage/listuser/listuser.component';
 import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.component';
 import { AddeditformComponent } from './mainpage/addeditform/addeditform.component';
 import { ChapterformComponent } from './mainpage/chapterform/chapterform.component';
+import { ImagesorterComponent } from './mainpage/imagesorter/imagesorter.component';
 
 const routes: Routes = [
   { path: '' , component : HomeComponent, canActivate:[authGuard]},
@@ -26,7 +27,6 @@ const routes: Routes = [
   { path: 'User' , component : UserComponent},
   { path: 'UserInfo/:userid' , component : UserinfoComponent},
   { path: 'Manga/:mangaid' , component : MangaComponent},
-  { path: ':mangaid/:chapterid/:chaptername' , component : ViewchapterComponent},
   { path: 'truyen-theo-doi' , component : UserfollowingComponent, canActivate:[authGuard]},
   { path: 'Mangas' , component : MangasComponent, canActivate:[authGuard]},
   { path: 'chapters/:mangaId' , component : ListchapterComponent},
@@ -35,10 +35,10 @@ const routes: Routes = [
   { path: 'Trash' , component : MangadeleteComponent, canActivate:[authGuard]},
   { path: 'Add-manga' , component : AddeditformComponent, canActivate:[authGuard]},
   { path: 'Edit-manga/:mangaId' , component : AddeditformComponent, canActivate:[authGuard]},
-  { path: ':mangaId/List-chapter' , component : ListchapterComponent, canActivate:[authGuard]},
+  { path: 'List-chapter/:mangaId' , component : ListchapterComponent, canActivate:[authGuard]},
   { path: 'Add-chapter' , component : ChapterformComponent, canActivate:[authGuard]},
   { path: 'Edit-chapter' , component : ChapterformComponent, canActivate:[authGuard]},
-
+  { path: 'image-sorter/:mangaId/:chapterId' , component : ImagesorterComponent},
 ];
 
 @NgModule({

@@ -6,9 +6,10 @@ import { message } from '../class/message';
 import { Observable, Subject, firstValueFrom, lastValueFrom, map } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MangaClass } from '../class/manga';
-import { ChapterView } from '../class/ChapterView';
+import { ChapterView, chapterView2, chapterView3 } from '../class/ChapterView';
 import { Category, CategoryView } from '../class/CategoryView.model';
 import { TypeManga } from '../class/TypeMangaView.model';
+import { ImagePositionUpdateModel } from '../class/ImageChaper-view.model';
 
 
 
@@ -56,6 +57,11 @@ export class MangaService {
   getListChapter(idManga: string): Observable<ChapterView[]> {
     const url = `${this.apiUrl}/${idManga}/GetChapter`;
     return this.http.get<ChapterView[]>(url);
+  }
+  //Lấy thông tin của một chương truyện
+  getInfoChapter(idManga: string, idChapter: string): Observable<chapterView3> {
+    const url = `${this.apiUrl}/${idManga}/${idChapter}/GetChapterInfo`;
+    return this.http.get<chapterView3>(url);
   }
 
   async getDsImage(mangaid: string, chapterid: string){
@@ -290,6 +296,34 @@ export class MangaService {
   //Lấy tên chương bộ truyện
   getAllNameChapter(mangaId: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/GetAllNameChapter/${mangaId}`);
+  }
+  //Lấy tất cả thông tin ảnh chương
+  getAllImages(idManga: string, idChapter: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${idManga}/${idChapter}/getAllImage`);
+  }
+  //Thay đổi vị trí ảnh
+  updateImagePositions(mangaId: string, chapterId: string, imageUpdates: any[]): Observable<any> {
+    const url = `${this.apiUrl}/${mangaId}/${chapterId}/UpdateImagePositions`;
+    return this.http.post(url, imageUpdates);
+  }
+//Thêm ảnh Chapter  
+  UploadImageChapter(mangaId: string, chapterId: string, chapter: string, mangaImages: File[], mangaUrls: string[]): Observable<any> {
+  const formData: FormData = new FormData();
+  const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
+  formData.append('Chapter', chapter);
+  mangaImages.forEach((file) => formData.append('mangaImages', file));
+  mangaUrls.forEach((url) => formData.append('mangaUrls', url));
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.put(`${this.apiUrl}/${mangaId}/${chapterId}/UploadImage`, formData, { headers });
+}
+  //Xóa ảnh chapter
+  deleteChapterImage(mangaId: string, chapterId: string, imageId: number): Observable<any> {
+  const url = `${this.apiUrl}/${mangaId}/${chapterId}/${imageId}/DeleteImage`;
+  return this.http.delete(url);
   }
 
 }

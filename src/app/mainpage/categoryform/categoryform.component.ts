@@ -46,7 +46,7 @@ export class CategoryformComponent implements OnInit{
             this.closeAddEditForm();
           },
           error: (error) => {
-            alert('Có lỗi xảy ra khi sửa thể loại');
+            alert('Bạn không có quyền quản lý thể loại!');
             console.error('Có lỗi xảy ra khi sửa thể loại:', error);
           }
         });
@@ -58,7 +58,7 @@ export class CategoryformComponent implements OnInit{
             this.closeAddEditForm();
           },
           error: (error) => {
-            alert('Có lỗi xảy ra khi thêm thể loại');
+            alert('Bạn không có quyền quản lý thể loại!');
             console.error('Có lỗi xảy ra khi thêm thể loại:', error);
           }
         });
