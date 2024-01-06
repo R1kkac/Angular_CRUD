@@ -17,6 +17,7 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
 import { AddeditformComponent } from './mainpage/addeditform/addeditform.component';
 import { ChapterformComponent } from './mainpage/chapterform/chapterform.component';
 import { ImagesorterComponent } from './mainpage/imagesorter/imagesorter.component';
+import { ListtypeComponent } from './mainpage/listtype/listtype.component';
 
 const routes: Routes = [
   { path: '' , component : HomeComponent, canActivate:[authGuard]},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'Mangas' , component : MangasComponent, canActivate:[authGuard]},
   { path: 'chapters/:mangaId' , component : ListchapterComponent},
   { path: 'Categorys' , component : CategorysComponent, canActivate:[authGuard]},
+  { path: 'Types' , component : ListtypeComponent, canActivate:[authGuard]},
   { path: 'Users' , component : ListuserComponent, canActivate:[authGuard]},
   { path: 'Trash' , component : MangadeleteComponent, canActivate:[authGuard]},
   { path: 'Add-manga' , component : AddeditformComponent, canActivate:[authGuard]},

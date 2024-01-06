@@ -47,6 +47,8 @@ import { MangadeleteComponent } from './mainpage/mangadelete/mangadelete.compone
 import { ImagesorterComponent } from './mainpage/imagesorter/imagesorter.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UploadimagesComponent } from './mainpage/uploadimages/uploadimages.component';
+import { ListtypeComponent } from './mainpage/listtype/listtype.component';
+import { TypeformComponent } from './mainpage/typeform/typeform.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { UploadimagesComponent } from './mainpage/uploadimages/uploadimages.comp
     MangadeleteComponent,
     ImagesorterComponent,
     UploadimagesComponent,
+    ListtypeComponent,
+    TypeformComponent,
     
   ],
   imports: [

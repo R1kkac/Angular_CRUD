@@ -46,9 +46,6 @@ export class AddeditformComponent implements OnInit{
 ngOnInit(): void {
   this.loadGenresList();
   this.loadTypeList();
-  // if (this.data.mangaId) {
-    //   this.loadMangaData(this.data.mangaId);
-    // }
   this.route.paramMap.subscribe(params => {
     this.mangaId = params.get('mangaId');
     

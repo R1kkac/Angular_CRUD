@@ -325,7 +325,18 @@ export class MangaService {
   const url = `${this.apiUrl}/${mangaId}/${chapterId}/${imageId}/DeleteImage`;
   return this.http.delete(url);
   }
-
+  //Thêm Type Manga
+  addTypeManga(typeManga: TypeManga): Observable<any> {
+    return this.http.post(`${this.apiUrl}/AddType`, typeManga);
+  }
+  //Xóa Type Manga
+  deleteTypeManga(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/DeleteType/${id}`);
+  }
+  //Sửa Type Manga
+  updateTypeManga(typeManga: TypeManga): Observable<any> {
+    return this.http.put(`${this.apiUrl}/EditType/${typeManga.id}`, typeManga);
+  }
 }
 
 

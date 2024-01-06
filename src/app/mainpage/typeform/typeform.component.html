@@ -1,0 +1,21 @@
+<div mat-dialog-title>
+    <h1>Type Form</h1>
+</div>
+<form [formGroup]="empForm" >
+<div mat-dialog-content class="content">
+    <div class="row">
+          <mat-form-field appearance="outline" >
+            <mat-label>Id</mat-label>
+            <input matInput type="text" placeholder="Học Đường" formControlName="id" [readonly]="isEdit">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tên kiểu truyện</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="closeAddEditForm()">Hủy</button>
+    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
+</div>
+</form>

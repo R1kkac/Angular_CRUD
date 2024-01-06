@@ -1,13 +1,22 @@
 <div class="main-body">
-    <mat-form-field>
-        <mat-label>Tìm kiếm</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
-      </mat-form-field>
+
+  <div class="header">
+    <h1>Danh sách thể loại</h1>
+    <button class="btn btn-primary" (click)="openAddForm()">Thêm Thể loại</button>
+</div>
+
+<div class="search-bar">
+  <mat-form-field >
+    <mat-label>Tìm kiếm</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
+  </mat-form-field>
+</div>
+    
       
-      <button mat-icon-button matTooltip="Thêm truyện" (click)="openAddForm()"><mat-icon color="primary">add</mat-icon></button>
+     
        
       
-      <div class="mat-elevation-z8">
+      <div class="table-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
       
           <!-- ID Column -->
