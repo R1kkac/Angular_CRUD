@@ -33,8 +33,12 @@
       <mat-list-item>
         <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
       </mat-list-item>
+
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser()"><mat-icon>person</mat-icon> Người dùng</button>
+        <button mat-button (click)="checkAndNavigateUser3()"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button routerLink="/Categorys"><mat-icon>book</mat-icon> Thể loại</button>
@@ -43,10 +47,13 @@
         <button mat-button routerLink="/Types"><mat-icon>book</mat-icon> Kiểu truyện</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser3()"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
+        <button mat-button routerLink="/Author"><mat-icon>people</mat-icon> Tác giả</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
+        <button mat-button routerLink="/Artist"><mat-icon>people</mat-icon> Họa sĩ</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="checkAndNavigateUser()"><mat-icon>person</mat-icon> Người dùng</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button (click)="checkAndNavigateUser2()" ><mat-icon>delete</mat-icon> Truyện đã xóa</button>

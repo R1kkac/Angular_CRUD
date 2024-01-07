@@ -1,0 +1,30 @@
+<div mat-dialog-title>
+    <h1>Author Form</h1>
+</div>
+<form [formGroup]="empForm" >
+<div mat-dialog-content class="content">
+    <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Tên tác giả</mat-label>
+            <input matInput type="text" placeholder="tên" formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tên khác</mat-label>
+            <input matInput type="text" formControlName="alternateName">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Ngày sinh</mat-label>
+            <input matInput type="date" formControlName="birthday" [min]="minDate" [max]="maxDate">
+          </mat-form-field>
+          <div class="image-container">
+            <mat-label>Ảnh tác giả</mat-label>
+            <img *ngIf="currentImage" [src]="currentImage" alt="Selected artikst image" class="image-preview"/>
+            <input type="file" accept="image/*" (change)="selectFile($event)" formControlName="authorImage">
+          </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="closeAddEditForm()">Hủy</button>
+    <button mat-raised-button color="primary" (click)="onFormSubmit()">{{data ? 'Cập nhập' : 'Thêm'}}</button>
+</div>
+</form>

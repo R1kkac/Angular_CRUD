@@ -5,6 +5,8 @@ import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, CategoryView } from 'src/app/class/CategoryView.model';
 import { TypeManga } from 'src/app/class/TypeMangaView.model';
+import { Artist, ArtistView } from 'src/app/class/artist-view.model';
+import { Author, AuthorView } from 'src/app/class/author-view.model';
 import { MangaService } from 'src/app/service/manga.service';
 
 @Component({
@@ -21,12 +23,12 @@ export class AddeditformComponent implements OnInit{
   mangaId: string | null = null; // Biến để lưu trữ ID của manga
   originalMangaName: string | null = null;// Biến để lưu trữ manganame của manga
   isPersonalManga: boolean = true;
+  artistList: ArtistView[] = [];
+  authorList: AuthorView[] = [];
 
   constructor(
     private _fb:FormBuilder,
     private _mangaService: MangaService,
-    //  private _dialog: MatDialog,
-    //  @Inject(MAT_DIALOG_DATA) public data:any,
     private route: ActivatedRoute,
     private router: Router){
     this.empForm = this._fb.group({
@@ -35,10 +37,11 @@ export class AddeditformComponent implements OnInit{
       mangaDetails:'',
       mangaImage:'',
       mangaAlternateName:'',
-      mangaAuthor:['', Validators.required],
-      mangaArtist:'',
+      artists: [[]],
+      authors:[[]],
       type:'',
-      genres: [[], Validators.required]
+      genres: [[], Validators.required],
+      
     });
   }
 
@@ -46,6 +49,8 @@ export class AddeditformComponent implements OnInit{
 ngOnInit(): void {
   this.loadGenresList();
   this.loadTypeList();
+  this.loadArtistList();
+  this.loadAuthorList();
   this.route.paramMap.subscribe(params => {
     this.mangaId = params.get('mangaId');
     
@@ -78,6 +83,28 @@ loadGenresList() {
   });
 }
 
+loadArtistList() {
+  this._mangaService.getArtistList().subscribe({
+    next: (data) => {
+      this.artistList = data;
+    },
+    error: (err) => {
+      console.error('Lỗi khi tải danh sách artist:', err);
+    }
+  });
+}
+
+loadAuthorList() {
+  this._mangaService.getAuthorList().subscribe({
+    next: (data) => {
+      this.authorList = data;
+    },
+    error: (err) => {
+      console.error('Lỗi khi tải danh sách author:', err);
+    }
+  });
+}
+
 async loadMangaData(mangaId: string) {
   try {
     const mangaData = await this._mangaService.Getinfomanga(mangaId);
@@ -88,11 +115,12 @@ async loadMangaData(mangaId: string) {
         mangaName: mangaData.mangaName,
         mangaDetails: mangaData.mangaDetails,
         mangaAlternateName: mangaData.mangaAlternateName,
-        mangaAuthor: mangaData.mangaAuthor,
-        mangaArtist: mangaData.mangaArtist,
         type: mangaData.type,
         genres: mangaData.listcategory.map((category: Category) => category.genreId.toString()),
+        artists: mangaData.listartist.map((artists: Artist) => artists.mangaArtistId),
+        authors: mangaData.listauthor.map((author: Author) => author.mangaAuthorId),
       });
+
       this.currentImage = mangaData.mangaImage; // Lưu URL hình ảnh để hiển thị
       this.originalMangaName = mangaData.mangaName;
     }
@@ -105,29 +133,40 @@ onGenreChange(event: MatSelectChange) {
   this.empForm.get('genres')?.setValue(event.value);
 }
 
+onArtistChange(event: MatSelectChange) {
+  this.empForm.get('artists')?.setValue(event.value);
+}
+
+onAuthorChange(event: MatSelectChange) {
+  this.empForm.get('authors')?.setValue(event.value);
+}
+
 private prepareCreateData(): FormData {
   const formData = new FormData();
   Object.keys(this.empForm.value).forEach(key => {
-    const value = this.empForm.get(key)?.value;
     if (key !== 'mangaImage') {
       if (key === 'genres') {
         // Đảm bảo genres không phải là null hoặc undefined trước khi thực hiện forEach
         (this.empForm.get(key) as FormArray).value.forEach((genreId: number) => {
-          console.log("Key:", key, "Value:", value);
-          // Chỉ định rõ ràng genreId là kiểu number
           formData.append('GenreIds', genreId.toString());
         });
-      } else {
+      } else if (key === 'artists') {
+        (this.empForm.get(key) as FormArray).value.forEach((artistId: number) => {
+          formData.append('ArtistIds', artistId.toString());
+        });
+      }else if (key === 'authors') {
+        (this.empForm.get(key) as FormArray).value.forEach((authorId: number) => {
+          formData.append('AuthorIds', authorId.toString());
+        });
+      }else {
         // Sử dụng non-null assertion operator vì các trường khác đã được kiểm tra và có Validators
         formData.append(key, this.empForm.get(key)!.value);
       }
     }
   });
-
   if (this.Image) {
     formData.append('mangaImage', this.Image, this.Image.name);
   }
-
   return formData; 
 }
 
@@ -139,8 +178,15 @@ private prepareFormData(): FormData {
       // Đối với trường 'genres', xử lý riêng
       if (key === 'genres') {
         (this.empForm.get(key) as FormArray).value.forEach((genreId: number) => {
-          console.log("Key:", key, "Value:", value);
           formData.append('GenreIds', genreId.toString());
+        });
+      }else if (key === 'artists') {
+        (this.empForm.get(key) as FormArray).value.forEach((artistId: number) => {
+          formData.append('ArtistIds', artistId.toString());
+        });
+      } else if (key === 'authors') {
+        (this.empForm.get(key) as FormArray).value.forEach((authorId: number) => {
+          formData.append('AuthorIds', authorId.toString());
         });
       } else {
         formData.append(key, value.toString());
@@ -171,8 +217,6 @@ selectFile(event: any): void {
     };
     reader.readAsDataURL(selectedFile); // Đọc file dưới dạng data URL
   }
-
-
 }
 
 //Tạo Truyện

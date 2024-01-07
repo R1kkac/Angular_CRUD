@@ -10,6 +10,8 @@ import { ChapterView, chapterView2, chapterView3 } from '../class/ChapterView';
 import { Category, CategoryView } from '../class/CategoryView.model';
 import { TypeManga } from '../class/TypeMangaView.model';
 import { ImagePositionUpdateModel } from '../class/ImageChaper-view.model';
+import { ArtistView } from '../class/artist-view.model';
+import { AuthorView } from '../class/author-view.model';
 
 
 
@@ -306,7 +308,7 @@ export class MangaService {
     const url = `${this.apiUrl}/${mangaId}/${chapterId}/UpdateImagePositions`;
     return this.http.post(url, imageUpdates);
   }
-//Thêm ảnh Chapter  
+  //Thêm ảnh Chapter  
   UploadImageChapter(mangaId: string, chapterId: string, chapter: string, mangaImages: File[], mangaUrls: string[]): Observable<any> {
   const formData: FormData = new FormData();
   const token = this.userUservice.decrypt(this.CookieService.get(this.userUservice.JWTCookie));
@@ -319,7 +321,7 @@ export class MangaService {
   });
 
   return this.http.put(`${this.apiUrl}/${mangaId}/${chapterId}/UploadImage`, formData, { headers });
-}
+  }
   //Xóa ảnh chapter
   deleteChapterImage(mangaId: string, chapterId: string, imageId: number): Observable<any> {
   const url = `${this.apiUrl}/${mangaId}/${chapterId}/${imageId}/DeleteImage`;
@@ -337,6 +339,72 @@ export class MangaService {
   updateTypeManga(typeManga: TypeManga): Observable<any> {
     return this.http.put(`${this.apiUrl}/EditType/${typeManga.id}`, typeManga);
   }
+
+  //Lấy danh sách họa sĩ
+  getArtistList(): Observable<ArtistView[]> {
+  return this.http.get<ArtistView[]>(`${this.apiUrl}/Artist/Getall`);
+  }   
+  //Lấy hình họa sĩ
+  getArtistImage(artistImage: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/LayHinhArist/${artistImage}`, { responseType: 'blob' });
+}
+  //Thêm họa sĩ
+  async addArtist(artistData: FormData): Promise<any> {
+    try {
+      return await this.http.post(`${this.apiUrl}/CreateArtist`, artistData).toPromise();
+    } catch (error) {
+      // Xử lý lỗi ở đây
+      console.error('Error occurred while creating manga', error);
+      throw error; // Hoặc xử lý lỗi theo cách khác
+    }
+  }
+  //Xóa họa sĩ
+  deleteArtist(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}/DeleteArtist`);
+  }
+   //Sửa họa sĩ
+    async updateArtist(id: number, mangaData: FormData): Promise<any> {
+    try {
+      return await this.http.put(`${this.apiUrl}/${id}/UpdateArtist`, mangaData).toPromise();
+    } catch (error) {
+      console.error('Error occurred while updating manga', error);
+      throw error; // Hoặc xử lý lỗi theo cách khác
+      }
+    }
+
+
+
+     //Lấy danh sách tác giả
+  getAuthorList(): Observable<AuthorView[]> {
+  return this.http.get<AuthorView[]>(`${this.apiUrl}/Author/Getall`);
+  }   
+  //Lấy hình họa sĩ
+  getAuthorImage(authorImage: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/LayHinhArist/${authorImage}`, { responseType: 'blob' });
+}
+  //Thêm họa sĩ
+  async addAuthor(authorData: FormData): Promise<any> {
+    try {
+      return await this.http.post(`${this.apiUrl}/CreateAuthor`, authorData).toPromise();
+    } catch (error) {
+      // Xử lý lỗi ở đây
+      console.error('Error occurred while creating manga', error);
+      throw error; // Hoặc xử lý lỗi theo cách khác
+    }
+  }
+  //Xóa họa sĩ
+  deleteAuthor(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}/DeleteAuthor`);
+  }
+   //Sửa họa sĩ
+    async updateAuthor(id: number, mangaData: FormData): Promise<any> {
+    try {
+      return await this.http.put(`${this.apiUrl}/${id}/UpdateAuthor`, mangaData).toPromise();
+    } catch (error) {
+      console.error('Error occurred while updating manga', error);
+      throw error; // Hoặc xử lý lỗi theo cách khác
+      }
+    }
 }
 
 

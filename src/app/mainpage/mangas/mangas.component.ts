@@ -28,7 +28,7 @@ import { TypeManga } from 'src/app/class/TypeMangaView.model';
 
 export class MangasComponent implements OnInit {
   
-  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'mangaAuthor', 'mangaArtist', 'type', 'genres', 'Status','action'];
+  displayedColumns: string[] = ['mangaId', 'mangaName', 'mangaDetails', 'mangaImage', 'mangaAlternateName', 'authors', 'artists', 'type', 'genres', 'Status','action'];
   dataSource: any;
   typeMangas: TypeManga[] = [];
   
@@ -60,6 +60,14 @@ export class MangasComponent implements OnInit {
 
   getGenres(manga: any): string {
     return manga.listcategory?.map((g: any) => g.genresIdName).join(', ') || 'N/A';
+  }
+
+  getArtists(manga: any): string {
+    return manga.listartist?.map((g: any) => g.name).join(', ') || 'N/A';
+  }
+
+  getAuthors(manga: any): string {
+    return manga.listauthor?.map((g: any) => g.name).join(', ') || 'N/A';
   }
 
   getMangaList(){
@@ -146,44 +154,14 @@ export class MangasComponent implements OnInit {
 }
 
   openAddForm() {
-  this.router.navigate(['/Add-manga']); // Sử dụng route tương ứng của bạn
+  this.router.navigate(['/Add-manga']); 
   }
-  // openAddForm(){
-  //   const dialogRef = this.dialog.open(AddeditformComponent);
-  //   dialogRef.afterClosed().subscribe(() => {
-  //     // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
-  //     this.ngOnInit();
-  //   });
-  // }
-
 
   openEditForm(mangaId: string) {
     this.router.navigate(['/Edit-manga', mangaId]); 
   }
  
-  // openEditForm(mangaId: string): void {
-  //   this.mangaService.Getinfomanga(mangaId).then(mangaData => {
-  //     if (mangaData) {
-  //       const dialogRef = this.dialog.open(AddeditformComponent, {
-  //         data: { 
-  //           mangaId: mangaId,
-  //           mangaName: mangaData.mangaName
-  //         }
-  //       });
   
-  //       dialogRef.afterClosed().subscribe(() => {
-  //         // Cập nhật dữ liệu bảng sau khi dialog đóng mà không cần reload trang
-  //         this.ngOnInit();
-  //       });
-  //     } else {
-  //       console.error('Không thể lấy thông tin manga');
-  //       // Xử lý lỗi hoặc thông báo cho người dùng
-  //     }
-  //   }).catch(error => {
-  //     console.error('Lỗi khi lấy thông tin manga:', error);
-  //     // Xử lý lỗi hoặc thông báo cho người dùng
-  //   });
-  // }
   openListChapter(mangaId: string): void {
     this.route.queryParams.subscribe(params => {
       const isPersonal  = params['isPersonal'] === 'true';

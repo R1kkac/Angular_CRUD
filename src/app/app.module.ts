@@ -49,6 +49,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UploadimagesComponent } from './mainpage/uploadimages/uploadimages.component';
 import { ListtypeComponent } from './mainpage/listtype/listtype.component';
 import { TypeformComponent } from './mainpage/typeform/typeform.component';
+import { ListartistComponent } from './mainpage/artist/listartist/listartist.component';
+import { AddeditartistComponent } from './mainpage/artist/addeditartist/addeditartist.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ListauthorComponent } from './mainpage/author/listauthor/listauthor.component';
+import { AddeditauthorComponent } from './mainpage/author/addeditauthor/addeditauthor.component';
 
 
 @NgModule({
@@ -81,6 +87,10 @@ import { TypeformComponent } from './mainpage/typeform/typeform.component';
     UploadimagesComponent,
     ListtypeComponent,
     TypeformComponent,
+    ListartistComponent,
+    AddeditartistComponent,
+    ListauthorComponent,
+    AddeditauthorComponent,
     
   ],
   imports: [
@@ -116,6 +126,8 @@ import { TypeformComponent } from './mainpage/typeform/typeform.component';
     MatButtonModule,
     MatSlideToggleModule,
     DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
 
   ],

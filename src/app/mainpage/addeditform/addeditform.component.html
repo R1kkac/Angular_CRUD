@@ -18,18 +18,24 @@
           <input matInput type="text" placeholder="Naruto" formControlName="mangaAlternateName">
         </mat-form-field>
       </div>
+
       <div class="col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Tác giả</mat-label>
-          <input matInput type="text" placeholder="Naruto" formControlName="mangaAuthor">
+          <mat-select formControlName="authors" multiple (selectionChange)="onAuthorChange($event)">
+            <mat-option *ngFor="let author of authorList" [value]="author.mangaAuthorId">{{author.name}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Họa sĩ</mat-label>
-          <input matInput type="text" placeholder="Naruto" formControlName="mangaArtist">
+          <mat-select formControlName="artists" multiple (selectionChange)="onArtistChange($event)">
+            <mat-option *ngFor="let artist of artistList" [value]="artist.mangaArtistId">{{artist.name}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
+
       <div class="col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Kiểu truyện</mat-label>
@@ -48,6 +54,9 @@
           </mat-select>
         </mat-form-field>
       </div>
+
+      
+
     </div>
     <div class="row">
       <div class="col-md-12">
