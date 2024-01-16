@@ -10,9 +10,10 @@
 }
 
 .image-list {
-  display: flex;
-  flex-direction: column;
+  max-width: 1200px; /* Điều chỉnh chiều rộng tối đa theo nhu cầu */
+  overflow-x: auto; /* Cho phép cuộn ngang nếu nội dung tràn ra */
   margin-bottom: 15px;
+  margin: 0 auto;
 }
 
 .image-item {
@@ -39,7 +40,8 @@
 
 .image-thumbnail {
   width: 100px;
-  height: auto;
+  height: 120px; /* Thiết lập chiều cao cố định */
+  object-fit: cover; /* Giữ hình ảnh phủ kín không bị méo */
   margin-right: 15px;
 }
 
@@ -55,6 +57,13 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.image-actions input[type="text"] {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 5px;
+  width: 60px; /* Điều chỉnh theo nhu cầu */
 }
 
 .image-actions .delete-button {

@@ -222,7 +222,8 @@ selectFile(event: any): void {
 //Tạo Truyện
 private createManga(): void {
   let mangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
-  this.empForm.get('mangaName')?.setValue(mangaName);
+  // this.empForm.get('mangaName')?.setValue(mangaName);
+
   this._mangaService.checkMangaNameExists(mangaName).subscribe(exists => {
     if (exists) {
       alert('Tên truyện đã tồn tại, vui lòng chọn tên khác.');
@@ -294,7 +295,7 @@ private performUpdate(): void {
 
 onFormSubmit(): void {
     if (this.empForm.valid ) {
-      let mangaName = this.empForm.get('mangaName')?.value.trim().toUpperCase();
+      let mangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
       this.empForm.get('mangaName')?.setValue(mangaName);
       // Kiểm tra xem form này là để cập nhật hay tạo mới
       this.route.paramMap.subscribe(params => {

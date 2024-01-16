@@ -55,6 +55,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListauthorComponent } from './mainpage/author/listauthor/listauthor.component';
 import { AddeditauthorComponent } from './mainpage/author/addeditauthor/addeditauthor.component';
+import { NgChartsModule } from 'ng2-charts';
+import { CommentReportsComponent } from './mainpage/comment-reports/comment-reports.component';
+import { ComfirmUserComponent } from './mainpage/comment-reports/comfirm-user/comfirm-user.component';
+
+
 
 
 @NgModule({
@@ -91,7 +96,8 @@ import { AddeditauthorComponent } from './mainpage/author/addeditauthor/addedita
     AddeditartistComponent,
     ListauthorComponent,
     AddeditauthorComponent,
-    
+    CommentReportsComponent,
+    ComfirmUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,7 +133,8 @@ import { AddeditauthorComponent } from './mainpage/author/addeditauthor/addedita
     MatSlideToggleModule,
     DragDropModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgChartsModule,
 
 
   ],

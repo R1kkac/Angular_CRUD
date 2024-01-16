@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <button *ngIf="isLogin" (click)="drawer.toggle()" mat-icon-button><mat-icon>menu</mat-icon></button>
+  <button id="menu" *ngIf="isLogin" (click)="drawer.toggle()" mat-icon-button><mat-icon>menu</mat-icon></button>
     <div style="margin-left: 1em;">
       <a routerLink="/" mat-raised-button color="accent">Trang chủ
   </a>
@@ -35,7 +35,7 @@
       </mat-list-item>
 
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser3()"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
+        <button id="allmanga" mat-button (click)="checkAndNavigateUser3()"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
@@ -54,6 +54,12 @@
       </mat-list-item>
       <mat-list-item>
         <button mat-button (click)="checkAndNavigateUser()"><mat-icon>person</mat-icon> Người dùng</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="checkAndNavigateUser4()">
+          <mat-icon matBadge="!" matBadgeColor="warn" matBadgeHidden="!hasNewReports">notification_important</mat-icon> 
+          Báo cáo bình luận
+        </button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button (click)="checkAndNavigateUser2()" ><mat-icon>delete</mat-icon> Truyện đã xóa</button>

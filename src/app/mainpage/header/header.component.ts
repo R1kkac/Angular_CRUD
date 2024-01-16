@@ -16,8 +16,10 @@ export class HeaderComponent implements OnInit{
   user: user;
   isLogin=false;
   isPersonalManga: boolean = false;
+  hasNewReports: boolean = false;
 
-  constructor(private userService: UserService, private router: Router, private login: isLogin, private route: ActivatedRoute,private authService: AuthService){
+  constructor(private userService: UserService, private router: Router, 
+    private login: isLogin, private route: ActivatedRoute,private authService: AuthService){
     this.user= new user();
   }
   ngOnInit(): void {
@@ -83,4 +85,16 @@ checkAndNavigateUser3() {
   });
 }
   
+checkAndNavigateUser4() {
+  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
+    if (userInfo.role.includes('Admin')) {
+      this.router.navigate(['/Comment']);
+    } else {
+      alert('Chỉ có Admin mới có quyền truy cập trang này.');
+    }
+  }, error => {
+    console.error('Lỗi khi lấy thông tin người dùng: ', error);
+  });
+}
+
 }

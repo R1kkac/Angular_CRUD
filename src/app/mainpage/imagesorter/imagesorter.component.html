@@ -15,8 +15,10 @@
         <div class="image-name">{{ image.imageName }}</div>
       </div>
       <div class="image-actions">
-        <button (click)="moveToStart(i)">Đầu tiên</button>
-        <button (click)="moveToEnd(i)">Cuối cùng</button>
+        <button *ngIf="!showInput[i]" (click)="showInputField(i)">Nhập Vị Trí</button>
+        <input *ngIf="showInput[i]" type="text" [(ngModel)]="newPositions[i]" (keydown.enter)="newPositions[i] !== null && moveImage(i, newPositions[i])">
+        <button *ngIf="i > 0" (click)="moveToStart(i)">Đầu tiên</button>
+        <button *ngIf="i < images.length - 1" (click)="moveToEnd(i)">Cuối cùng</button>
         <button (click)="deleteImage(i)" class="delete-button">Xóa</button>
       </div>
     </div>

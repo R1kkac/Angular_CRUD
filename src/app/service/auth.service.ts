@@ -144,5 +144,13 @@ export class AuthService {
     const url = `${this.apiUrl}/DeleteRole?idUser=${encodeURIComponent(idUser)}&role=${encodeURIComponent(role)}`;
     return this.http.delete(url);
   }
+  //Khóa tài khoản
+  lockUserAccount(userId: string, daysToLock: number): Observable<any> {
+    const url = `${this.apiUrl}/LockUserAccount`;
+    const data = { userId, daysToLock };
+    return this.http.post(url, data);
+  }
+  
+
 
 }

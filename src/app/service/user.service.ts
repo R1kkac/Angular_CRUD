@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { CookieService } from 'ngx-cookie-service';
 import { user } from '../class/user';
-import { BehaviorSubject, Subject, from, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, from, lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  private apiUrl='https://localhost:7132/Services';
+    private apiUrl='https://localhost:7132/Services';
+    private ApiComment='https://localhost:7132/Binh_Luan';
     private privateKey='testwebtruyentranhangularvsaspapi';
     public JWTCookie='JwtToken';
     public UserCookie='User';
@@ -112,6 +113,35 @@ export class UserService {
         return false;
       }
     }
+
+    getReportedComments(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.ApiComment}/GetReportedComments`);
+    }
+
+    getReportedRepComments(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.ApiComment}/GetReportedRepComments`);
+    }
+
+    hideCommentContent(commentId: string): Observable<any> {
+      const url = `${this.ApiComment}/HideCommentContent?commentId=${commentId}`;
+      return this.http.post(url, null,{ observe: 'response' }); 
+    }
+
+    hideRepCommentContent(IdReply: string): Observable<any> {
+      const url = `${this.ApiComment}/HideRepCommentContent?commentId=${IdReply}`;
+      return this.http.post(url, null,{ observe: 'response' }); 
+    }
+
+    deleteReported(commentId: string): Observable<any> {
+      const url = `${this.ApiComment}/DeleteReport?commentId=${commentId}`;
+      return this.http.post(url, null,{ observe: 'response' }); 
+    }
+
+    deleteReportedRep(IdReply: string): Observable<any> {
+      const url = `${this.ApiComment}/DeleteReportRep?commentId=${IdReply}`;
+      return this.http.post(url, null,{ observe: 'response' }); 
+    }
+
 }
 @Injectable({
   providedIn: 'root'

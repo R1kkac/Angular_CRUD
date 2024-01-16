@@ -20,6 +20,7 @@ import { ImagesorterComponent } from './mainpage/imagesorter/imagesorter.compone
 import { ListtypeComponent } from './mainpage/listtype/listtype.component';
 import { ListartistComponent } from './mainpage/artist/listartist/listartist.component';
 import { ListauthorComponent } from './mainpage/author/listauthor/listauthor.component';
+import { CommentReportsComponent } from './mainpage/comment-reports/comment-reports.component';
 
 const routes: Routes = [
   { path: '' , component : HomeComponent, canActivate:[authGuard]},
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'Author' , component : ListauthorComponent, canActivate:[authGuard]},
   { path: 'Types' , component : ListtypeComponent, canActivate:[authGuard]},
   { path: 'Users' , component : ListuserComponent, canActivate:[authGuard]},
+  { path: 'Comment' , component : CommentReportsComponent, canActivate:[authGuard]},
   { path: 'Trash' , component : MangadeleteComponent, canActivate:[authGuard]},
   { path: 'Add-manga' , component : AddeditformComponent, canActivate:[authGuard]},
   { path: 'Edit-manga/:mangaId' , component : AddeditformComponent, canActivate:[authGuard]},

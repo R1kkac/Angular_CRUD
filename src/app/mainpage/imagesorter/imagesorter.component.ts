@@ -15,6 +15,8 @@ export class ImagesorterComponent implements OnInit{
   mangaId: string | null = null;
   chapterId: string | null = null;
   images: any[] = [];
+  showInput: boolean[] = []; // Mảng để quản lý việc hiển thị các ô nhập text
+  newPositions: (number | null)[] = []; // Mảng để lưu trữ vị trí mới nhập vào
 
   constructor(private mangaService: MangaService,private route: ActivatedRoute,private dialog: MatDialog,private router: Router,
     private toastr: ToastrService) { }
@@ -31,9 +33,33 @@ export class ImagesorterComponent implements OnInit{
         console.error('MangaId hoặc ChapterId không tồn tại.');
       }
     });
+    this.images.forEach(() => {
+      this.showInput.push(false);
+      this.newPositions.push(null);
+    });
   }
 
+  showInputField(index: number): void {
+    this.showInput[index] = true;
+  }
 
+  moveImage(currentIndex: number, newPosition: number | null): void {
+    if (newPosition === null) {
+      // Xử lý trường hợp vị trí mới là null
+      console.error('Vị trí mới không hợp lệ');
+      return;
+    }
+    newPosition = Number(newPosition) - 1; // Chuyển đổi thành chỉ mục dựa trên 0
+    if (newPosition >= 0 && newPosition < this.images.length) {
+      const imageToMove = this.images[currentIndex];
+      this.images.splice(currentIndex, 1);
+      this.images.splice(newPosition, 0, imageToMove);
+      this.showInput[currentIndex] = false; // Ẩn ô nhập sau khi di chuyển
+    } else {
+      // Xử lý trường hợp nhập vị trí không hợp lệ
+      console.error('Vị trí không hợp lệ');
+    }
+  }
 
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.images, event.previousIndex, event.currentIndex);
