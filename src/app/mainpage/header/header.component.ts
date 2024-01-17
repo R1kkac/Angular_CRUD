@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { user } from 'src/app/class/user';
 import { UserInfo } from 'src/app/class/userInfo.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -17,8 +18,9 @@ export class HeaderComponent implements OnInit{
   isLogin=false;
   isPersonalManga: boolean = false;
   hasNewReports: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor(private userService: UserService, private router: Router, 
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService,
     private login: isLogin, private route: ActivatedRoute,private authService: AuthService){
     this.user= new user();
   }
@@ -31,10 +33,17 @@ export class HeaderComponent implements OnInit{
       if( this.user._Id.length>0){
         this.isLogin=true;
         this.isPersonalManga = true;
+        this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
+          this.isAdmin = userInfo.role.includes('Admin');
+        });
       } else {
         this.isPersonalManga = false;
       }
-    })
+      
+    });
+    
+    
+
     this.route.url.subscribe((segments) => {
       if (segments && segments.length > 0){
         // Kiểm tra xem page hiện tại có phải đang trong Mangas hay không
@@ -45,20 +54,22 @@ export class HeaderComponent implements OnInit{
       }
     });
   }
+
   Login(){
       this.router.navigate(['/Login']);
   }
 
+  navigateIfAdmin(path: string, adminPath?: string) {
+    if (this.isAdmin) {
+        this.router.navigate([adminPath || path]);
+    } else {
+        this.toastr.error('Chỉ có Admin mới có quyền truy cập trang này', 'Lỗi');
+    }
+}
+
+
   checkAndNavigateUser() {
-    this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
-      if (userInfo.role.includes('Admin')) {
-        this.router.navigate(['/Users']);
-      } else {
-        alert('Chỉ có Admin mới có quyền truy cập trang này.');
-      }
-    }, error => {
-      console.error('Lỗi khi lấy thông tin người dùng: ', error);
-    });
+    this.navigateIfAdmin('/Users');
 }
 
 checkAndNavigateUser2() {
@@ -74,27 +85,27 @@ checkAndNavigateUser2() {
 }
 
 checkAndNavigateUser3() {
-  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
-    if (userInfo.role.includes('Admin')) {
-      this.router.navigate(['/Mangas']);
-    } else {
-      alert('Chỉ có Admin mới có quyền truy cập trang này.');
-    }
-  }, error => {
-    console.error('Lỗi khi lấy thông tin người dùng: ', error);
-  });
+  this.navigateIfAdmin('/Mangas');
 }
   
 checkAndNavigateUser4() {
-  this.authService.getUserInfo(this.user._Id).subscribe((userInfo: UserInfo) => {
-    if (userInfo.role.includes('Admin')) {
-      this.router.navigate(['/Comment']);
-    } else {
-      alert('Chỉ có Admin mới có quyền truy cập trang này.');
-    }
-  }, error => {
-    console.error('Lỗi khi lấy thông tin người dùng: ', error);
-  });
+  this.navigateIfAdmin('/Comment');
+}
+
+checkAndNavigateUser5() {
+  this.navigateIfAdmin('/Categorys');
+}
+
+checkAndNavigateUser6() {
+  this.navigateIfAdmin('/Types');
+}
+
+checkAndNavigateUser7() {
+  this.navigateIfAdmin('/Author');
+}
+
+checkAndNavigateUser8() {
+  this.navigateIfAdmin('/Artist');
 }
 
 }

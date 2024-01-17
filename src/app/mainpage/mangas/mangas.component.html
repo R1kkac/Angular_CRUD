@@ -54,17 +54,23 @@
 
       <ng-container matColumnDef="authors">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Tác giả </th>
-        <td mat-cell *matCellDef="let row"> {{ getAuthors(row) || 'Chưa có dữ liệu'}} </td>
+        <td mat-cell *matCellDef="let row"> 
+          {{ getAuthors(row) !== 'N/A' ? getAuthors(row) : 'Chưa có dữ liệu' }} 
+        </td>
+        
       </ng-container>
 
       <ng-container matColumnDef="artists">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Họa sĩ </th>
-        <td mat-cell *matCellDef="let row"> {{ getArtists(row) || 'Chưa có dữ liệu'}} </td>
+        <td mat-cell *matCellDef="let row"> 
+          {{ getArtists(row) !== 'N/A' ? getArtists(row) : 'Chưa có dữ liệu' }} 
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Kiểu truyện </th>
-        <td mat-cell *matCellDef="let row"> {{getTypeName(row.type) || 'Chưa có dữ liệu'}} </td>
+        <td mat-cell *matCellDef="let row"> 
+          {{getTypeName(row.type) !== 'N/A' ? getTypeName(row.type): 'Chưa có dữ liệu'}} </td>
       </ng-container>
 
 

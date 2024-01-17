@@ -158,7 +158,16 @@ export class MangasComponent implements OnInit {
   }
 
   openEditForm(mangaId: string) {
-    this.router.navigate(['/Edit-manga', mangaId]); 
+    // this.router.navigate(['/Edit-manga', mangaId] ); 
+
+    this.route.queryParams.subscribe(params => {
+      const isPersonal  = params['isPersonal'] === 'true';
+      if (isPersonal) {
+        this.router.navigate(['Edit-manga',mangaId], { queryParams: { isPersonal: isPersonal } });
+      } else {
+        this.router.navigate(['Edit-manga',mangaId,]);
+      }
+    });
   }
  
   

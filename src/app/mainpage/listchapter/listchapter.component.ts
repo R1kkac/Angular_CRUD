@@ -150,5 +150,5 @@ export class ListchapterComponent implements OnInit{
       }
     });
   }
-    // this.router.navigate(['/Mangas']);   
+   
 }

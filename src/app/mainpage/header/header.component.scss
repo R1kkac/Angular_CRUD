@@ -42,6 +42,13 @@
     display: block;
     margin-top: 60px; /* Điều chỉnh margin-top tùy thuộc vào chiều cao của header */
   }
+  ::ng-deep .disabled-link {
+    color: #a0a0a0 !important; 
+
+
+}
+
+
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
     

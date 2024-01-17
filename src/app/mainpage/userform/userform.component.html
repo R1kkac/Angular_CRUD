@@ -23,9 +23,11 @@
           
 
           <mat-form-field appearance="outline">
-            <mat-label>Additional Roles</mat-label>
+            <mat-label>Vai trò</mat-label>
             <mat-select formControlName="role" multiple >
-              <mat-option *ngFor="let role of rolesList" [value]="role.id">{{role.name}}</mat-option>
+              <mat-option *ngFor="let role of rolesList" [value]="role.id"
+              [disabled]="role.name === 'User' || role.name === 'Admin'"
+              >{{role.name}}</mat-option>
             </mat-select>
           </mat-form-field>
           

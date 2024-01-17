@@ -35,34 +35,34 @@
       </mat-list-item>
 
       <mat-list-item>
-        <button id="allmanga" mat-button (click)="checkAndNavigateUser3()"><mat-icon>library_books</mat-icon> Tất cả truyện</button>
+        <button id="allmanga" mat-button (click)="checkAndNavigateUser3()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>collections_bookmark</mat-icon> Tất cả truyện</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}"><mat-icon>library_books</mat-icon> Truyện cá nhân</button>
+        <button mat-button [routerLink]="['/Mangas']" [queryParams]="{isPersonal: isPersonalManga}" ><mat-icon>book</mat-icon> Truyện cá nhân</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/Categorys"><mat-icon>book</mat-icon> Thể loại</button>
+        <button mat-button (click)="checkAndNavigateUser5()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>category</mat-icon> Thể loại</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/Types"><mat-icon>book</mat-icon> Kiểu truyện</button>
+        <button mat-button (click)="checkAndNavigateUser6()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>style</mat-icon> Loại truyện</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/Author"><mat-icon>people</mat-icon> Tác giả</button>
+        <button mat-button (click)="checkAndNavigateUser7()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>person</mat-icon> Tác giả</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/Artist"><mat-icon>people</mat-icon> Họa sĩ</button>
+        <button mat-button (click)="checkAndNavigateUser8()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>brush</mat-icon> Họa sĩ</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser()"><mat-icon>person</mat-icon> Người dùng</button>
+        <button mat-button (click)="checkAndNavigateUser()" [ngClass]="{'disabled-link': !isAdmin}"><mat-icon>group</mat-icon> Người dùng</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser4()">
-          <mat-icon matBadge="!" matBadgeColor="warn" matBadgeHidden="!hasNewReports">notification_important</mat-icon> 
+        <button mat-button (click)="checkAndNavigateUser4()" [ngClass]="{'disabled-link': !isAdmin}">
+          <mat-icon matBadge="!" matBadgeColor="warn" matBadgeHidden="!hasNewReports">report_problem</mat-icon> 
           Báo cáo bình luận
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="checkAndNavigateUser2()" ><mat-icon>delete</mat-icon> Truyện đã xóa</button>
+        <button mat-button (click)="checkAndNavigateUser2()" ><mat-icon>delete_forever</mat-icon> Truyện đã xóa</button>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>

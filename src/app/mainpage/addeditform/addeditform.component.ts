@@ -22,7 +22,7 @@ export class AddeditformComponent implements OnInit{
   typeMangas: TypeManga[] = [];
   mangaId: string | null = null; // Biến để lưu trữ ID của manga
   originalMangaName: string | null = null;// Biến để lưu trữ manganame của manga
-  isPersonalManga: boolean = true;
+  // isPersonalManga: boolean = true;
   artistList: ArtistView[] = [];
   authorList: AuthorView[] = [];
 
@@ -237,10 +237,11 @@ private performCreate(): void {
   const formData = this.prepareCreateData();
   this._mangaService.createManga(formData)
     .then(response => {
-      console.log(response); // Sử dụng response ở đây
+      console.log(response);
       alert('Thêm truyện thành công');
-      // this.closeAddEditForm();
-      this.router.navigate(['/Mangas']);
+      const isPersonal : boolean = true;
+      this.router.navigate(['/Mangas'], { queryParams: { isPersonal: isPersonal } });
+      // this.goBackToMangas();
     })
     .catch(error => {
       alert('Lỗi khi thêm truyện');
@@ -280,7 +281,7 @@ private performUpdate(): void {
       console.log('Cập nhật truyện thành công:', response);
       alert('Cập nhật truyện thành công');
       // this.closeAddEditForm();
-      this.router.navigate(['/Mangas']);
+      this.goBackToMangas();
     })
     .catch(error => {
       // Xử lý khi có lỗi xảy ra
@@ -312,10 +313,18 @@ onFormSubmit(): void {
       alert('Vui lòng điền đầy đủ thông tin truyện'); 
   }
 }
-navigateBack(): void {
-  this.router.navigate(['/Mangas']); // Sử dụng đường dẫn đúng tới component 'Mangas'
+// navigateBack(): void {
+//   this.router.navigate(['/Mangas']); // Sử dụng đường dẫn đúng tới component 'Mangas'
+// }
+goBackToMangas() {
+  this.route.queryParams.subscribe(params => {
+    const isPersonal  = params['isPersonal'] === 'true';
+    if (isPersonal) {
+      
+      this.router.navigate(['/Mangas'], { queryParams: { isPersonal: isPersonal } });
+    } else {
+      this.router.navigate(['/Mangas']);
+    }
+  });
 }
-  // closeAddEditForm(){
-  //   this._dialog.closeAll();
-  // } 
 }

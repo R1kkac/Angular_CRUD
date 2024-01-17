@@ -1,7 +1,7 @@
 <div class="main-body">
 
     <div class="header">
-      <h1>Danh sách họa sĩ</h1>
+      <h1>Danh sách tác giả</h1>
       <button class="btn btn-primary" (click)="openAddForm()">Thêm Tác giả</button>
   </div>
   
@@ -28,12 +28,12 @@
         
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên họa sĩ </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên tác giả </th>
               <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="authorImage">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ảnh họa sĩ </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ảnh tác giả </th>
                 <td mat-cell *matCellDef="let row">
                   <img [src]="row.authorImage || 'path-to-default-image.jpg'" alt="Manga Image" class="manga-image">
                 </td>

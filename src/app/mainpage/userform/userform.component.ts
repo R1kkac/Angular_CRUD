@@ -30,7 +30,6 @@ export class UserformComponent {
     });
   }
 
-
 ngOnInit(): void {
       this.loadRolesList();
       this.loadUsersData(this.data.id);
