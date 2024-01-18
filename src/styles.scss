@@ -2,3 +2,18 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#layoutSidenav_content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Chiều cao tối thiểu là 100% chiều cao viewport */
+}
+
+main {
+    flex: 1; /* Cho phép main mở rộng và chiếm không gian có sẵn */
+}

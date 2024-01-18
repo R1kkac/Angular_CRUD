@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MangaService } from 'src/app/service/manga.service';
 import { CategoryformComponent } from '../categoryform/categoryform.component';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categorys',
@@ -22,7 +23,7 @@ export class CategorysComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router) {}
+  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,private toastr: ToastrService) {}
   
   ngOnInit(): void {
     this.getCategoryList();
@@ -64,18 +65,21 @@ export class CategorysComponent implements OnInit{
       if (result) {
         this.mangaService.xoaTheLoai(genre.genreId).subscribe({
           next: (response) => {
-            alert('Xóa thể loại thành công');
+            // alert('Xóa thể loại thành công');
+            this.toastr.success('Xóa thể loại thành công!');
             this.getCategoryList();
-          },
+          },  
           error: (error) => {
             // Xử lý lỗi tại đây
             if (error.status === 400 && error.error && error.error.message) {
               // Hiển thị thông báo lỗi cụ thể từ phản hồi API
-              alert(error.error.message);
+              // alert(error.error.message);
+              this.toastr.error(error.error.message, 'Lỗi');
             } else {
               // Xử lý lỗi chung
               console.error('Có lỗi xảy ra khi xóa thể loại:', error);
-              alert('Bạn không có quyền quản lý thể loại!');
+              // alert('Bạn không có quyền quản lý thể loại!');
+              this.toastr.error('Bạn không có quyền quản lý thể loại!', 'Lỗi');
             }
           }
         });

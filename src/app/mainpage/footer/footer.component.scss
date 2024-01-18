@@ -1,0 +1,83 @@
+.footer {
+    background-color: var(--footer-background-color, #0b56eb);
+    color: var(--footer-text-color, #6c757d);
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo img {
+    margin-bottom: 10px;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+.footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links li {
+    padding: 0 10px;
+}
+
+.footer-links a {
+    color: var(--footer-link-color, #007bff);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-link {
+    font-size: 16px;
+    color: var(--footer-social-link-color, #495057);
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: var(--footer-social-link-hover-color, #007bff);
+}
+
+/* Font Awesome Icons */
+.fab {
+    font-family: 'Font Awesome 5 Brands';
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-right {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .social-links {
+        order: -1;
+    }
+}

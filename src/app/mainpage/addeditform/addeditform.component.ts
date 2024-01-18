@@ -223,12 +223,14 @@ selectFile(event: any): void {
 private createManga(): void {
   let mangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
   // this.empForm.get('mangaName')?.setValue(mangaName);
+  this._mangaService.getAllNameManga().subscribe(mangaNames => {
+    let isDuplicate = mangaNames.some(name => name.trim().toLowerCase() === mangaName);
 
-  this._mangaService.checkMangaNameExists(mangaName).subscribe(exists => {
-    if (exists) {
+    if (isDuplicate) {
       alert('Tên truyện đã tồn tại, vui lòng chọn tên khác.');
       return;
     }
+    // Nếu tên truyện không trùng, tiếp tục tạo mới
     this.performCreate();
   });
 }
@@ -253,7 +255,7 @@ private performCreate(): void {
 
 private updateManga(): void {
     const newMangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
-  this.empForm.get('mangaName')?.setValue(newMangaName);
+  // this.empForm.get('mangaName')?.setValue(newMangaName);
   // Kiểm tra nếu tên truyện mới nhập vào khác với tên truyện ban đầu
   if (newMangaName !== this.originalMangaName) {
     this._mangaService.checkMangaNameExists(newMangaName).subscribe(exists => {
@@ -296,8 +298,6 @@ private performUpdate(): void {
 
 onFormSubmit(): void {
     if (this.empForm.valid ) {
-      let mangaName = this.empForm.get('mangaName')?.value.trim().toLowerCase();
-      this.empForm.get('mangaName')?.setValue(mangaName);
       // Kiểm tra xem form này là để cập nhật hay tạo mới
       this.route.paramMap.subscribe(params => {
         this.mangaId = params.get('mangaId');
@@ -313,9 +313,7 @@ onFormSubmit(): void {
       alert('Vui lòng điền đầy đủ thông tin truyện'); 
   }
 }
-// navigateBack(): void {
-//   this.router.navigate(['/Mangas']); // Sử dụng đường dẫn đúng tới component 'Mangas'
-// }
+
 goBackToMangas() {
   this.route.queryParams.subscribe(params => {
     const isPersonal  = params['isPersonal'] === 'true';

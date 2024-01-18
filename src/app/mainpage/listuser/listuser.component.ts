@@ -15,6 +15,7 @@ import { UserformComponent } from '../userform/userform.component';
 export class ListuserComponent {
   displayedColumns: string[] = [ 'id','name','avatar','userName','email','phoneNumber','role','action'];
   dataSource: any;
+  defaultAvatarPath = 'assets/storage/User-avatar.svg.png';
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,12 +29,22 @@ export class ListuserComponent {
   getUserList(){
     this.authService.GetAllUser().subscribe({
       next: (res : any)=>{
-        this.dataSource = new MatTableDataSource(res);
+        const usersWithAvatar = res.map((user: any) => ({
+          ...user,
+          avatar: this.isValidAvatarUrl(user.avatar) ? user.avatar : this.defaultAvatarPath
+        }));
+        
+        this.dataSource = new MatTableDataSource(usersWithAvatar);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
       error: console.log,
     });
+  }
+
+  isValidAvatarUrl(url: string): boolean {
+    const validImageExtensions = ['.jpg', '.jpeg', '.png', '.gif']; // Danh sách các phần mở rộng hợp lệ cho hình ảnh
+    return validImageExtensions.some(extension => url.endsWith(extension));
   }
 
   applyFilter(event: Event) {

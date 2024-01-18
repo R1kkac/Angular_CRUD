@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TypeManga } from 'src/app/class/TypeMangaView.model';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class MangasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,private route: ActivatedRoute) {}
+  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,private route: ActivatedRoute,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.mangaService.GetAllType().subscribe((types: TypeManga[]) => {
@@ -100,7 +101,8 @@ export class MangasComponent implements OnInit {
     try {
       const response = await this.mangaService.updateMangaStatus(manga);
       // Xử lý phản hồi
-      alert('Trạng thái cập nhật thành công');
+      // alert('Trạng thái cập nhật thành công');
+      this.toastr.success('Trạng thái cập nhật thành công!');
     } catch (error) {
       // Xử lý lỗi
       alert('Không thể thay đổi trạng thái');

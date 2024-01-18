@@ -150,7 +150,10 @@ export class AuthService {
     const data = { userId, daysToLock };
     return this.http.post(url, data);
   }
-  
+  //Số lượng người dùng
+  getNumberAllUser(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/number_all_user`);
+  }
 
 
 }

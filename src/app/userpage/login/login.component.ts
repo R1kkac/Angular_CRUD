@@ -45,7 +45,8 @@ export class LoginComponent {
             this.toastr.error('Đăng nhập thất bại');
           }
         } else {
-          alert('Chỉ có Uploader hoặc Admin mới có quyền truy cập trang này.');
+          // alert('Chỉ có Uploader hoặc Admin mới có quyền truy cập trang này.');
+          this.toastr.error('Chỉ có Admin mới có quyền truy cập trang này', 'Đăng Nhập Thất Bại');
         }
       }, error => {
         this.toastr.error('Đăng nhập thất bại');

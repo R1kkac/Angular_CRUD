@@ -2,15 +2,38 @@
     <main>
         <div class="container-fluid">
             <h1>Dashboard</h1>
-            <div class="chart-container">
-                <canvas baseChart
-                        class="chart"
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [type]="barChartType">
-                </canvas>
+            <div class="charts-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Tổng Quan</h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart
+                                class="chart"
+                                [datasets]="barChartData1"
+                                [labels]="barChartLabels1"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [type]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Tổng Lượt Xem</h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart
+                                class="chart"
+                                [datasets]="barChartData2"
+                                [labels]="barChartLabels2"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [type]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

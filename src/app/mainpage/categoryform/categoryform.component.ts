@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { MangaService } from 'src/app/service/manga.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { MangaService } from 'src/app/service/manga.service';
 })
 export class CategoryformComponent implements OnInit{
   empForm: FormGroup;
-  constructor(private _fb:FormBuilder, private _mangaService: MangaService,private _dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data:any){
+  constructor(private _fb:FormBuilder, private _mangaService: MangaService,private _dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data:any,private toastr: ToastrService){
     this.empForm = this._fb.group({
       genresIdName:['', Validators.required],
       info:['', Validators.required],
@@ -42,7 +43,8 @@ export class CategoryformComponent implements OnInit{
         this._mangaService.suaTheLoai(this.data.genreId,categoryData).subscribe({
           next: (response) => {
             console.log('Thể loại đã được sửa:', response);
-            alert('Thể loại đã được sửa');
+            // alert('Thể loại đã được sửa');
+            this.toastr.success('Thể loại đã được sửa!');
             this.closeAddEditForm();
           },
           error: (error) => {

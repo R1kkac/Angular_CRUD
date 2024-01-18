@@ -49,12 +49,7 @@ export class MangaService {
     const url= `${this.apiUrl}/GetAllUserManga`;
     return this.http.get(url,httpOptions);
   }
-  //Kiểm tra tên trùng
-  checkMangaNameExists(mangaName: string): Observable<boolean> {
-    return this.http.get<string[]>(`${this.apiUrl}/GetAllNameManga`).pipe(
-      map((names) => names.includes(mangaName))
-    );
-  }
+  
   //Lấy danh sách ảnh của một chương truyện
   getListChapter(idManga: string): Observable<ChapterView[]> {
     const url = `${this.apiUrl}/${idManga}/GetChapter`;
@@ -299,6 +294,16 @@ export class MangaService {
   getAllNameChapter(mangaId: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/GetAllNameChapter/${mangaId}`);
   }
+  
+  getAllNameManga(): Observable<string[]>{
+    return this.http.get<string[]>(`${this.apiUrl}/GetAllNameManga`);
+  }
+  //Kiểm tra tên trùng
+  checkMangaNameExists(mangaName: string): Observable<boolean> {
+    return this.http.get<string[]>(`${this.apiUrl}/GetAllNameManga`).pipe(
+      map((names) => names.includes(mangaName))
+    );
+  }
   //Lấy tất cả thông tin ảnh chương
   getAllImages(idManga: string, idChapter: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${idManga}/${idChapter}/getAllImage`);
@@ -404,6 +409,20 @@ export class MangaService {
       console.error('Error occurred while updating manga', error);
       throw error; // Hoặc xử lý lỗi theo cách khác
       }
+    }
+    //Số lượng truyện
+    getNumberAllManga(): Observable<number> {
+      return this.http.get<number>(`${this.apiUrl}/number_all_manga`);
+    }
+    //Tổng Lượt xem trong ngày, tháng, năm
+    getViewByDay(): Observable<number> {
+      return this.http.get<number>(`${this.apiUrl}/total-views-by-day`);
+    }
+    getViewByMonth(): Observable<number> {
+      return this.http.get<number>(`${this.apiUrl}/total-views-by-month`);
+    }
+    getViewByYear(): Observable<number> {
+      return this.http.get<number>(`${this.apiUrl}/total-views-by-year`);
     }
 }
 

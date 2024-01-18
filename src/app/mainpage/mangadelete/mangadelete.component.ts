@@ -9,6 +9,7 @@ import { MangaService } from 'src/app/service/manga.service';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { user } from 'src/app/class/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-mangadelete',
@@ -24,7 +25,8 @@ export class MangadeleteComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,private route: ActivatedRoute,private authService: AuthService) {}
+  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,
+    private route: ActivatedRoute,private authService: AuthService,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.mangaService.GetAllType().subscribe((types: TypeManga[]) => {
@@ -79,7 +81,8 @@ export class MangadeleteComponent implements OnInit{
     try {
       const response = await this.mangaService.updateMangaStatus(manga);
       // Xử lý phản hồi
-      alert('Trạng thái cập nhật thành công');
+      // alert('Trạng thái cập nhật thành công');
+      this.toastr.success('Trạng thái cập nhật thành công!');
     } catch (error) {
       // Xử lý lỗi
       alert('Không thể thay đổi trạng thái');
@@ -110,10 +113,12 @@ export class MangadeleteComponent implements OnInit{
   async onRecover(manga: any): Promise<void> {
     try {
       await this.mangaService.DeleteStatus(manga.mangaId);
-      alert('Phục hồi truyện thành công');
+      // alert('Phục hồi truyện thành công');
+      this.toastr.success('Phục hồi truyện thành công!');
       this.ngOnInit(); // Hoặc gọi hàm cập nhật danh sách
     } catch (error) {
-      alert('Không thể phục hồi truyện');
+      // alert('Không thể phục hồi truyện');
+      this.toastr.error('Không thể phục hồi truyện', 'Lỗi');
       console.error('Có lỗi xảy ra khi phục hồi truyện:', error);
     }
   }
@@ -128,14 +133,16 @@ export class MangadeleteComponent implements OnInit{
       if (result) {
         this.mangaService.deleteManga(manga.mangaId).subscribe({
           next: (response) => {
-            alert('Xóa truyện thành công');
+            // alert('Xóa truyện thành công');
+            this.toastr.success('Xóa truyện thành công!');
             // this.getMangaList();
             this.ngOnInit();
           },
           error: (error) => {
             // Xử lý lỗi tại đây
             // Ví dụ: Hiển thị thông báo lỗi
-            alert('Không thể xóa truyện');
+            // alert('Không thể xóa truyện');
+            this.toastr.error('Không thể xóa truyện', 'Lỗi');
             console.error('Có lỗi xảy ra khi xóa manga:', error);
           }
         });
