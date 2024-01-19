@@ -1,8 +1,8 @@
 <div class="main-body">
 
     <div class="header">
-      <h1>Danh sách kiểu truyện</h1>
-      <button class="btn btn-primary" (click)="openAddForm()">Thêm kiểu truyện</button>
+      <h1>Danh sách loại truyện</h1>
+      <button class="btn btn-primary" (click)="openAddForm()">Thêm loại truyện</button>
   </div>
   
   <div class="search-bar">
@@ -27,7 +27,7 @@
         
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên kiểu truyện </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên loại truyện </th>
               <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
         
