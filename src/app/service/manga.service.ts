@@ -385,7 +385,7 @@ export class MangaService {
   }   
   //Lấy hình họa sĩ
   getAuthorImage(authorImage: string): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/LayHinhArist/${authorImage}`, { responseType: 'blob' });
+    return this.http.get(`${this.apiUrl}/LayHinhAuthor/${authorImage}`, { responseType: 'blob' });
 }
   //Thêm họa sĩ
   async addAuthor(authorData: FormData): Promise<any> {

@@ -17,6 +17,7 @@ import { catchError, forkJoin, map, of } from 'rxjs';
 export class ListartistComponent {
   displayedColumns: string[] = ['mangaArtistId', 'name', 'artistImage','alternateName','birthday','action'];
   dataSource: any;
+  defaultAvatarPath = 'assets/storage/User-avatar.svg.png';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -40,7 +41,7 @@ export class ListartistComponent {
               })
             );
           } else {
-            return of(null); // Nếu không có hình ảnh, trả về null
+            return of(this.defaultAvatarPath); // Nếu không có hình ảnh
           }
         });
   

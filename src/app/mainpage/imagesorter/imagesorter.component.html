@@ -1,7 +1,13 @@
 <div class="image-sorter-container">
+  <div class="navigation-buttons">
+    <button class="btn scroll-btn" (click)="scrollToTop()">↑</button>
+    <input type="number" class="position-input" [(ngModel)]="scrollPosition" (keydown.enter)="scrollToPosition(scrollPosition)">
+    <button class="btn scroll-btn" (click)="scrollToBottom()">↓</button>
+  </div>
+  
   <div class="toolbar">
     <button mat-raised-button color="warn" (click)="goBackToListChapter()">Quay lại</button>
-    <h2>Sắp xếp ảnh chương</h2>
+    <h2>Sắp xếp ảnh chương </h2>
     <button class="btn btn-primary" (click)="openUploadForm()">Thêm ảnh</button>
   </div>
   <div class="save-order">

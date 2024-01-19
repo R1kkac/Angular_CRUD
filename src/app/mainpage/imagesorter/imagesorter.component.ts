@@ -14,9 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ImagesorterComponent implements OnInit{
   mangaId: string | null = null;
   chapterId: string | null = null;
+  chapterName: string | null = null;
   images: any[] = [];
   showInput: boolean[] = []; // Mảng để quản lý việc hiển thị các ô nhập text
   newPositions: (number | null)[] = []; // Mảng để lưu trữ vị trí mới nhập vào
+  scrollPosition?: number;
+
 
   constructor(private mangaService: MangaService,private route: ActivatedRoute,private dialog: MatDialog,private router: Router,
     private toastr: ToastrService) { }
@@ -24,6 +27,7 @@ export class ImagesorterComponent implements OnInit{
     this.route.paramMap.subscribe(params => {
       this.mangaId = params.get('mangaId');
       this.chapterId = params.get('chapterId');
+
       if (this.mangaId && this.chapterId) {
         this.mangaService.getAllImages(this.mangaId, this.chapterId).subscribe(images => {
           this.images = images;
@@ -125,6 +129,21 @@ export class ImagesorterComponent implements OnInit{
       this.images.splice(index, 1);
       this.images.push(imageToMove);
     }
+  }
+
+  scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  
+  scrollToPosition(position: number | undefined) {
+    const safePosition = position ?? 1; // Nếu position là undefined, sử dụng 1 làm giá trị mặc định
+    const element = document.querySelector(`.image-item:nth-child(${safePosition})`);
+    element?.scrollIntoView({behavior: 'smooth'});
+  }
+  
+  
+  scrollToBottom() {
+    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
   }
 
   saveOrder(): void {

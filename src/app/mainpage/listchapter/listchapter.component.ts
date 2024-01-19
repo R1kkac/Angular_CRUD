@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -34,7 +35,8 @@ export class ListchapterComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,private route: ActivatedRoute) {}
+  constructor(private mangaService: MangaService, private dialog: MatDialog, private router: Router,
+    private route: ActivatedRoute,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -55,6 +57,7 @@ export class ListchapterComponent implements OnInit{
         this.dataSource.data = chuong; // Gán dữ liệu cho dataSource
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.setInitialSorting();
       },
       (loi) => {
         console.error('Lỗi khi lấy danh sách chương:', loi);
@@ -63,6 +66,13 @@ export class ListchapterComponent implements OnInit{
     );
   }
 
+  setInitialSorting() {
+    // Kiểm tra xem this.sort có tồn tại không
+    if (this.sort) {
+      this.sort.sort({ id: 'chapterName', start: 'asc', disableClear: false });
+    }
+  }
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -122,7 +132,8 @@ export class ListchapterComponent implements OnInit{
       if (result) {
         this.mangaService.deleteChapter(this.mangaId, chapter.chapterId).subscribe({
           next: () => {
-            alert('Xóa chương thành công');
+            // alert('Xóa chương thành công');
+            this.toastr.success('Xóa chương thành công!');
             this.layDanhSachChuong(this.mangaId);
           },
           error: (error) => {

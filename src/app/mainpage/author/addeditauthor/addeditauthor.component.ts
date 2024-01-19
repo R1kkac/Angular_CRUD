@@ -62,9 +62,18 @@ export class AddeditauthorComponent implements OnInit{
     if (this.empForm.valid) {
       const formData = new FormData();
       formData.append('name', this.empForm.value.name);
-      formData.append('alternateName', this.empForm.value.alternateName);
-      formData.append('birthday', this.empForm.value.birthday);
-     
+      const birthday = this.empForm.value.birthday;
+      if (birthday) {
+      formData.append('birthday', birthday);
+      }
+      const alternateName = this.empForm.value.alternateName;
+      if (alternateName !== null && alternateName !== undefined && alternateName.trim() !== '') {
+        formData.append('alternateName', alternateName);
+      } else {
+        formData.append('alternateName', '');
+      }
+
+
       if (this.Image) {
         formData.append('authorImage', this.Image, this.Image.name);
       };

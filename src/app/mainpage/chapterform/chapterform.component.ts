@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component,Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { MangaService } from 'src/app/service/manga.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ChapterformComponent implements OnInit{
   currentImage: string | ArrayBuffer | null = null;
   chapterForm: FormGroup;
   files: File[] = [];
-  constructor(private _fb:FormBuilder, private _mangaService: MangaService,private dialog: MatDialog,
+  constructor(private _fb:FormBuilder, private _mangaService: MangaService,private dialog: MatDialog,private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data:any, public dialogRef: MatDialogRef<ChapterformComponent>)
     {
       // Lấy ngày giờ hiện tại
@@ -97,7 +98,8 @@ export class ChapterformComponent implements OnInit{
       .subscribe({
         next: (response) => {
           // Xử lý khi tạo chapter thành công
-          alert('Chapter đã được tạo thành công!');
+          // alert('Chapter đã được tạo thành công!');
+          this.toastr.success('Chapter đã được tạo thành công!');
           this.closeForm();
           this.dialogRef.close(true); // Đóng dialog và trả về giá trị 'true'
         },

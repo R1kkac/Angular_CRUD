@@ -17,6 +17,7 @@ import { AddeditauthorComponent } from '../addeditauthor/addeditauthor.component
 export class ListauthorComponent {
   displayedColumns: string[] = ['mangaAuthorId', 'name', 'authorImage','alternateName','birthday','action'];
   dataSource: any;
+  defaultAvatarPath = 'assets/storage/User-avatar.svg.png';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -40,7 +41,7 @@ export class ListauthorComponent {
               })
             );
           } else {
-            return of(null); // Nếu không có hình ảnh, trả về null
+            return of(this.defaultAvatarPath); // Nếu không có hình ảnh, trả về null
           }
         });
   

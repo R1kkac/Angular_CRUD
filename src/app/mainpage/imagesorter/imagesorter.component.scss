@@ -83,3 +83,49 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.navigation-buttons {
+  position: fixed; /* Luôn hiển thị trên màn hình */
+  bottom: 20px; /* Khoảng cách từ đáy màn hình */
+  right: 20px; /* Khoảng cách từ cạnh phải màn hình */
+  display: flex;
+  flex-direction: column; /* Các nút được xếp dọc */
+  align-items: center;
+  z-index: 1000; /* Đảm bảo nút nằm trên cùng các thành phần khác */
+}
+
+.navigation-buttons .scroll-btn,
+.navigation-buttons .position-input {
+  margin-bottom: 10px; /* Khoảng cách giữa các nút và input */
+  padding: 10px; /* Đệm cho nút và input */
+  font-size: 20px; /* Phóng to mũi tên */
+  text-align: center;
+  width: 40px; /* Đảm bảo nút vuông vắn */
+  height: 40px;
+  line-height: 20px; /* Điều chỉnh độ cao của text để mũi tên nằm giữa */
+  border: none;
+  background-color: #000000;
+  color: white;
+  border-radius: 50%; /* Làm cho nút tròn */
+  cursor: pointer;
+}
+
+.navigation-buttons .position-input {
+  width: 45px; /* Chiều rộng của input */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+}
+
+/* Định dạng lại khi input được focus */
+.navigation-buttons .position-input:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+/* Ẩn mũi tên cho các trình duyệt Webkit như Chrome và Safari */
+.position-input::-webkit-outer-spin-button,
+.position-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
