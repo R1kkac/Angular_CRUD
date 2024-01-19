@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-    private apiUrl='https://localhost:7132/Services';
+    private apiUrl='https://localhost:7132/Authentication';
+    // private apiUrl='https://yahallo.azurewebsites.net/Services';
     private ApiComment='https://localhost:7132/Binh_Luan';
+    // private ApiComment='https://yahallo.azurewebsites.net/Binh_Luan';
     private privateKey='testwebtruyentranhangularvsaspapi';
     public JWTCookie='JwtToken';
     public UserCookie='User';

@@ -20,7 +20,10 @@ export class AuthService {
     this.message=new message();
    }
 
+
   apiUrl='https://localhost:7132/Authentication';
+  // apiUrl='https://yahallo.azurewebsites.net/Authentication';
+  
   // apiUrl='http://haileds119067-001-site1.etempurl.com';
   
 

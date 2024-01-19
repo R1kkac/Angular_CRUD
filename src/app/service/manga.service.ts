@@ -24,7 +24,9 @@ export class MangaService {
     private search: Searchmanga,private sanitizer: DomSanitizer) { 
         this.message=new message();
   }
+
   apiUrl='https://localhost:7132/Truyen-tranh';
+  // apiUrl='https://yahallo.azurewebsites.net/Truyen-tranh';
 
 
   //Lấy toàn bộ danh sách manga
